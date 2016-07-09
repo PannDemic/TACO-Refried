@@ -26,28 +26,30 @@ namespace Taco.Classes
             PreserveHomeSystem = true;
             HomeSystemId = 4322;
 
-            MonitorBranch = true;
-            MonitorDeklein = true;
-            MonitorTenal = true;
-            MonitorVenal = true;
-            MonitorFade = true;
-            MonitorPureBlind = true;
-            MonitorTribute = true;
-            MonitorVale = true;
-            MonitorProvidence = true;
-            MonitorDelve = true;
+            MonitorBranch = false;
+            MonitorDeklein = false;
+            MonitorTenal = false;
+            MonitorVenal = false;
+            MonitorFade = false;
+            MonitorPureBlind = false;
+            MonitorTribute = false;
+            MonitorVale = false;
+            MonitorProvidence = false;
+            MonitorDelve = false;
             MonitorGameLog = true;
+            MonitorGOTG = true;
 
-            AlertBranch = true;
-            AlertDeklein = true;
-            AlertTenal = true;
-            AlertVenal = true;
-            AlertFade = true;
-            AlertPureBlind = true;
-            AlertTribute = true;
-            AlertVale = true;
-            AlertProvidence = true;
-            AlertDelve = true;
+            AlertBranch = false;
+            AlertDeklein = false;
+            AlertTenal = false;
+            AlertVenal = false;
+            AlertFade = false;
+            AlertPureBlind = false;
+            AlertTribute = false;
+            AlertVale = false;
+            AlertProvidence = false;
+            AlertDelve = false;
+            AlertGOTG = true;
 
             PreserveCameraDistance = true;
             PreserveLookAt = true;
@@ -347,6 +349,10 @@ namespace Taco.Classes
         public int MaxAlertAge { get; set; }
         [ProtoMember(58)]
         public int MaxAlerts { get; set; }
+        [ProtoMember(59)]
+        public bool MonitorGOTG { get; set; }
+        [ProtoMember(60)]
+        public bool AlertGOTG { get; set; }
     }
 
 }

@@ -69,7 +69,7 @@ namespace Taco
 
         private Point _oldUiContainerPosition, _oldPosition, _oldGlOutPosition;
 
-        private LogWatcher[] _logFiles = new LogWatcher[11];
+        private LogWatcher[] _logFiles = new LogWatcher[12];
 
         private Dictionary<string, SoundPlayer> _sounds = new Dictionary<string, SoundPlayer>();
         private SoundPlayer _customSound = new SoundPlayer();
@@ -524,6 +524,10 @@ namespace Taco
             {
                 switch (logPrefix)
                 {
+                    case "GOTG_Intel":
+                        if (_conf.AlertGOTG)
+                            return true;
+                        break;
                     case "brn":
                         if (_conf.AlertBranch)
                             return true;
@@ -669,6 +673,9 @@ namespace Taco
             // Write the line to the require channel pane
             switch (prefix)
             {
+                case "GOTG_Intel":
+                    GOTGIntel.Text = outputLine + GOTGIntel.Text;
+                    break;
                 case "brn":
                     BranchIntel.Text = outputLine + BranchIntel.Text;
                     break;
@@ -719,6 +726,8 @@ namespace Taco
                 CombinedIntel.SelectionStart = 0;
                 lineCountCombinesIntel--;
             }
+            if (GOTGIntel.Text.Length > maxTextBoxLength)
+                GOTGIntel.Text = GOTGIntel.Text.Substring(0, maxTextBoxLength);
 
             if (BranchIntel.Text.Length > maxTextBoxLength)
                 BranchIntel.Text = BranchIntel.Text.Substring(0, maxTextBoxLength);
@@ -2724,6 +2733,7 @@ namespace Taco
                 _logFiles[8] = OpenLogFile(MonitorProvidence, "provi", LogFileType.Chat);
                 _logFiles[9] = OpenLogFile(MonitorDelve, "delve", LogFileType.Chat);
                 _logFiles[10] = OpenLogFile(MonitorGameLog, "gme", LogFileType.Game);
+                _logFiles[11] = OpenLogFile(MonitorGOTG, "GOTG_Intel", LogFileType.Chat);
 
                 LogWatchToggle.Text = "Stop Watching Logs";
 
@@ -2752,6 +2762,7 @@ namespace Taco
                 _logFiles[8] = null;
                 _logFiles[9] = null;
                 _logFiles[10] = null;
+                _logFiles[11] = null;
 
                 if (_followingChars)
                     ToggleFollowChars();
@@ -3984,6 +3995,34 @@ namespace Taco
             }
         }
 
+        private void MonitorGOTG_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_configLoaded)
+                _conf.MonitorGOTG = MonitorGOTG.Checked;
+
+            if (MonitorGOTG.Checked)
+            {
+                if (_hiddenPages.ContainsKey("GOTGPage"))
+                {
+                    var insertionIndex = UITabControl.TabPages.IndexOfKey("GOTGPage");
+                    if (insertionIndex == -1)
+                    {
+                        insertionIndex = 1;
+                    }
+
+                    UITabControl.TabPages.Insert(insertionIndex, _hiddenPages["GOTGPage"]);
+                    _hiddenPages.Remove("GOTGPage");
+                    SetChannelTabSize();
+                }
+            }
+            else
+            {
+                UITabControl.TabPages.RemoveByKey("GOTGPage");
+                _hiddenPages.Add("GOTGPage", GOTGPage);
+                SetChannelTabSize();
+            }
+        }
+
         private void SetChannelTabSize()
         {
             Size tempSize = UITabControl.ItemSize;
@@ -4137,7 +4176,13 @@ namespace Taco
         {
             if (_configLoaded)
                 _conf.AlertDelve = AlertDelve.Checked;
-        }    
+        }
+
+        private void AlertGOTG_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_configLoaded)
+                _conf.AlertGOTG = AlertGOTG.Checked;
+        }
 
         private void RemoveSelectedItem_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -4802,5 +4847,6 @@ namespace Taco
             _characters.RemoveName(CharacterList.Items[CharacterList.SelectedIndex].ToString());
             CharacterList.Items.RemoveAt(CharacterList.SelectedIndex);
         }
+      
     }
 }

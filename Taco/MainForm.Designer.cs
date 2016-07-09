@@ -32,7 +32,6 @@ namespace Taco
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.glOut = new OpenTK.GLControl();
             this.SearchSystem = new System.Windows.Forms.TextBox();
             this.Ticker = new System.Windows.Forms.Timer(this.components);
             this.MonitorBranch = new System.Windows.Forms.CheckBox();
@@ -48,6 +47,8 @@ namespace Taco
             this.LogWatchToggle = new System.Windows.Forms.Button();
             this.UITabControl = new System.Windows.Forms.TabControl();
             this.CombinedPage = new System.Windows.Forms.TabPage();
+            this.GOTGPage = new System.Windows.Forms.TabPage();
+            this.GOTGIntel = new System.Windows.Forms.TextBox();
             this.BranchPage = new System.Windows.Forms.TabPage();
             this.BranchIntel = new System.Windows.Forms.TextBox();
             this.DekleinPage = new System.Windows.Forms.TabPage();
@@ -73,6 +74,7 @@ namespace Taco
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.ChannelsPage = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.MonitorGOTG = new System.Windows.Forms.CheckBox();
             this.MonitorDelve = new System.Windows.Forms.CheckBox();
             this.MonitorProvidence = new System.Windows.Forms.CheckBox();
             this.MonitorVale = new System.Windows.Forms.CheckBox();
@@ -81,6 +83,7 @@ namespace Taco
             this.MonitorFade = new System.Windows.Forms.CheckBox();
             this.MonitorGameLog = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.AlertGOTG = new System.Windows.Forms.CheckBox();
             this.AlertDelve = new System.Windows.Forms.CheckBox();
             this.AlertProvidence = new System.Windows.Forms.CheckBox();
             this.AlertVale = new System.Windows.Forms.CheckBox();
@@ -93,6 +96,7 @@ namespace Taco
             this.AlertBranch = new System.Windows.Forms.CheckBox();
             this.AlertManagementPage = new System.Windows.Forms.TabPage();
             this.AddCustomAlertGroup = new System.Windows.Forms.GroupBox();
+            this.SaveCustomAlert = new System.Windows.Forms.Button();
             this.PlayCustomTextAlertSound = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.CustomTextAlertSound = new System.Windows.Forms.ComboBox();
@@ -102,6 +106,7 @@ namespace Taco
             this.NewCustomAlertText = new System.Windows.Forms.TextBox();
             this.AddNewCustomAlert = new System.Windows.Forms.Button();
             this.AddRangeAlertGroup = new System.Windows.Forms.GroupBox();
+            this.SaveRangeAlert = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.NewRangeAlertType = new System.Windows.Forms.ComboBox();
             this.PlayRangeAlertSound = new System.Windows.Forms.LinkLabel();
@@ -117,6 +122,8 @@ namespace Taco
             this.RangeAlertCharacter = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.CancelEditSelectedItem = new System.Windows.Forms.LinkLabel();
+            this.EditSelectedItem = new System.Windows.Forms.LinkLabel();
             this.MoveAlertDown = new System.Windows.Forms.Button();
             this.MoveAlertUp = new System.Windows.Forms.Button();
             this.PlayAlertSound = new System.Windows.Forms.LinkLabel();
@@ -124,16 +131,19 @@ namespace Taco
             this.AlertList = new System.Windows.Forms.CheckedListBox();
             this.ListManagementPage = new System.Windows.Forms.TabPage();
             this.groupBox17 = new System.Windows.Forms.GroupBox();
+            this.NewLinkedCharacter = new System.Windows.Forms.TextBox();
+            this.RemoveLinkedCharacter = new System.Windows.Forms.Button();
             this.CharacterList = new System.Windows.Forms.ListBox();
+            this.AddLinkedCharacter = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.IgnoreSystemList = new System.Windows.Forms.ListBox();
             this.RemoveIgnoreSystem = new System.Windows.Forms.Button();
             this.NewIgnoreSystem = new System.Windows.Forms.ComboBox();
             this.AddIgnoreSystem = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.IgnoreTextList = new System.Windows.Forms.ListBox();
             this.RemoveIgnoreText = new System.Windows.Forms.Button();
             this.NewIgnoreText = new System.Windows.Forms.TextBox();
-            this.IgnoreTextList = new System.Windows.Forms.ListBox();
             this.AddIgnoreText = new System.Windows.Forms.Button();
             this.MiscSettingsPage = new System.Windows.Forms.TabPage();
             this.CrashException = new System.Windows.Forms.Button();
@@ -187,6 +197,7 @@ namespace Taco
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.label32 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -216,21 +227,15 @@ namespace Taco
             this.clearSelectedSystemsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HintToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.EditSelectedItem = new System.Windows.Forms.LinkLabel();
-            this.CancelEditSelectedItem = new System.Windows.Forms.LinkLabel();
-            this.SaveRangeAlert = new System.Windows.Forms.Button();
-            this.SaveCustomAlert = new System.Windows.Forms.Button();
-            this.AddLinkedCharacter = new System.Windows.Forms.Button();
-            this.RemoveLinkedCharacter = new System.Windows.Forms.Button();
-            this.NewLinkedCharacter = new System.Windows.Forms.TextBox();
+            this.glOut = new OpenTK.GLControl();
             this.CombinedIntel = new Taco.Classes.RichTextBoxEx();
-            this.label32 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.UIContainer)).BeginInit();
             this.UIContainer.Panel1.SuspendLayout();
             this.UIContainer.Panel2.SuspendLayout();
             this.UIContainer.SuspendLayout();
             this.UITabControl.SuspendLayout();
             this.CombinedPage.SuspendLayout();
+            this.GOTGPage.SuspendLayout();
             this.BranchPage.SuspendLayout();
             this.DekleinPage.SuspendLayout();
             this.TenalPage.SuspendLayout();
@@ -274,31 +279,12 @@ namespace Taco
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // glOut
-            // 
-            this.glOut.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.glOut.BackColor = System.Drawing.Color.Black;
-            this.glOut.Location = new System.Drawing.Point(12, 12);
-            this.glOut.Name = "glOut";
-            this.glOut.Size = new System.Drawing.Size(750, 750);
-            this.glOut.TabIndex = 13;
-            this.glOut.TabStop = false;
-            this.glOut.VSync = false;
-            this.glOut.Load += new System.EventHandler(this.glOut_Load);
-            this.glOut.Paint += new System.Windows.Forms.PaintEventHandler(this.glOut_Paint);
-            this.glOut.MouseDown += new System.Windows.Forms.MouseEventHandler(this.glOut_MouseDown);
-            this.glOut.MouseMove += new System.Windows.Forms.MouseEventHandler(this.glOut_MouseMove);
-            this.glOut.MouseUp += new System.Windows.Forms.MouseEventHandler(this.glOut_MouseUp);
-            this.glOut.Resize += new System.EventHandler(this.glOut_Resize);
-            // 
             // SearchSystem
             // 
             this.SearchSystem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.SearchSystem.Location = new System.Drawing.Point(3, 7);
+            this.SearchSystem.Location = new System.Drawing.Point(3, 6);
             this.SearchSystem.Name = "SearchSystem";
-            this.SearchSystem.Size = new System.Drawing.Size(202, 20);
+            this.SearchSystem.Size = new System.Drawing.Size(202, 21);
             this.SearchSystem.TabIndex = 1;
             // 
             // Ticker
@@ -312,9 +298,9 @@ namespace Taco
             this.MonitorBranch.AutoSize = true;
             this.MonitorBranch.Checked = true;
             this.MonitorBranch.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.MonitorBranch.Location = new System.Drawing.Point(6, 19);
+            this.MonitorBranch.Location = new System.Drawing.Point(6, 18);
             this.MonitorBranch.Name = "MonitorBranch";
-            this.MonitorBranch.Size = new System.Drawing.Size(60, 17);
+            this.MonitorBranch.Size = new System.Drawing.Size(60, 16);
             this.MonitorBranch.TabIndex = 5;
             this.MonitorBranch.Text = "Branch";
             this.MonitorBranch.UseVisualStyleBackColor = true;
@@ -325,9 +311,9 @@ namespace Taco
             this.MonitorDeklein.AutoSize = true;
             this.MonitorDeklein.Checked = true;
             this.MonitorDeklein.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.MonitorDeklein.Location = new System.Drawing.Point(6, 42);
+            this.MonitorDeklein.Location = new System.Drawing.Point(6, 39);
             this.MonitorDeklein.Name = "MonitorDeklein";
-            this.MonitorDeklein.Size = new System.Drawing.Size(62, 17);
+            this.MonitorDeklein.Size = new System.Drawing.Size(66, 16);
             this.MonitorDeklein.TabIndex = 6;
             this.MonitorDeklein.Text = "Deklein";
             this.MonitorDeklein.UseVisualStyleBackColor = true;
@@ -338,9 +324,9 @@ namespace Taco
             this.MonitorTenal.AutoSize = true;
             this.MonitorTenal.Checked = true;
             this.MonitorTenal.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.MonitorTenal.Location = new System.Drawing.Point(6, 65);
+            this.MonitorTenal.Location = new System.Drawing.Point(6, 60);
             this.MonitorTenal.Name = "MonitorTenal";
-            this.MonitorTenal.Size = new System.Drawing.Size(53, 17);
+            this.MonitorTenal.Size = new System.Drawing.Size(54, 16);
             this.MonitorTenal.TabIndex = 7;
             this.MonitorTenal.Text = "Tenal";
             this.MonitorTenal.UseVisualStyleBackColor = true;
@@ -351,9 +337,9 @@ namespace Taco
             this.MonitorVenal.AutoSize = true;
             this.MonitorVenal.Checked = true;
             this.MonitorVenal.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.MonitorVenal.Location = new System.Drawing.Point(6, 88);
+            this.MonitorVenal.Location = new System.Drawing.Point(6, 81);
             this.MonitorVenal.Name = "MonitorVenal";
-            this.MonitorVenal.Size = new System.Drawing.Size(53, 17);
+            this.MonitorVenal.Size = new System.Drawing.Size(54, 16);
             this.MonitorVenal.TabIndex = 8;
             this.MonitorVenal.Text = "Venal";
             this.MonitorVenal.UseVisualStyleBackColor = true;
@@ -364,7 +350,7 @@ namespace Taco
             this.FullscreenToggle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.FullscreenToggle.Location = new System.Drawing.Point(298, 5);
             this.FullscreenToggle.Name = "FullscreenToggle";
-            this.FullscreenToggle.Size = new System.Drawing.Size(148, 23);
+            this.FullscreenToggle.Size = new System.Drawing.Size(148, 21);
             this.FullscreenToggle.TabIndex = 3;
             this.FullscreenToggle.Text = "Fullscreen";
             this.FullscreenToggle.UseVisualStyleBackColor = true;
@@ -372,9 +358,9 @@ namespace Taco
             // 
             // QuitTaco
             // 
-            this.QuitTaco.Location = new System.Drawing.Point(6, 470);
+            this.QuitTaco.Location = new System.Drawing.Point(6, 434);
             this.QuitTaco.Name = "QuitTaco";
-            this.QuitTaco.Size = new System.Drawing.Size(410, 23);
+            this.QuitTaco.Size = new System.Drawing.Size(410, 21);
             this.QuitTaco.TabIndex = 11;
             this.QuitTaco.Text = "Quit";
             this.QuitTaco.UseVisualStyleBackColor = true;
@@ -383,9 +369,9 @@ namespace Taco
             // TestFlood
             // 
             this.TestFlood.Enabled = false;
-            this.TestFlood.Location = new System.Drawing.Point(6, 499);
+            this.TestFlood.Location = new System.Drawing.Point(6, 461);
             this.TestFlood.Name = "TestFlood";
-            this.TestFlood.Size = new System.Drawing.Size(130, 23);
+            this.TestFlood.Size = new System.Drawing.Size(130, 21);
             this.TestFlood.TabIndex = 10;
             this.TestFlood.TabStop = false;
             this.TestFlood.Text = "Test Flood";
@@ -398,7 +384,7 @@ namespace Taco
             this.UIContainer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.UIContainer.IsSplitterFixed = true;
-            this.UIContainer.Location = new System.Drawing.Point(775, 12);
+            this.UIContainer.Location = new System.Drawing.Point(775, 11);
             this.UIContainer.Name = "UIContainer";
             this.UIContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -415,7 +401,7 @@ namespace Taco
             // UIContainer.Panel2
             // 
             this.UIContainer.Panel2.Controls.Add(this.UITabControl);
-            this.UIContainer.Size = new System.Drawing.Size(450, 750);
+            this.UIContainer.Size = new System.Drawing.Size(450, 692);
             this.UIContainer.SplitterDistance = 65;
             this.UIContainer.TabIndex = 18;
             // 
@@ -423,9 +409,9 @@ namespace Taco
             // 
             this.BufferingIndicator.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BufferingIndicator.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.BufferingIndicator.Location = new System.Drawing.Point(3, 7);
+            this.BufferingIndicator.Location = new System.Drawing.Point(3, 6);
             this.BufferingIndicator.Name = "BufferingIndicator";
-            this.BufferingIndicator.Size = new System.Drawing.Size(202, 20);
+            this.BufferingIndicator.Size = new System.Drawing.Size(202, 18);
             this.BufferingIndicator.TabIndex = 10;
             this.BufferingIndicator.Text = "Buffering Intel";
             this.BufferingIndicator.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -435,7 +421,7 @@ namespace Taco
             // 
             this.FindSystem.Location = new System.Drawing.Point(211, 5);
             this.FindSystem.Name = "FindSystem";
-            this.FindSystem.Size = new System.Drawing.Size(81, 23);
+            this.FindSystem.Size = new System.Drawing.Size(81, 21);
             this.FindSystem.TabIndex = 2;
             this.FindSystem.Text = "Find";
             this.FindSystem.UseVisualStyleBackColor = true;
@@ -444,9 +430,9 @@ namespace Taco
             // LogWatchToggle
             // 
             this.LogWatchToggle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LogWatchToggle.Location = new System.Drawing.Point(3, 34);
+            this.LogWatchToggle.Location = new System.Drawing.Point(3, 31);
             this.LogWatchToggle.Name = "LogWatchToggle";
-            this.LogWatchToggle.Size = new System.Drawing.Size(443, 23);
+            this.LogWatchToggle.Size = new System.Drawing.Size(443, 21);
             this.LogWatchToggle.TabIndex = 9;
             this.LogWatchToggle.Text = "Start Watching Logs";
             this.LogWatchToggle.UseVisualStyleBackColor = true;
@@ -458,6 +444,7 @@ namespace Taco
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.UITabControl.Controls.Add(this.CombinedPage);
+            this.UITabControl.Controls.Add(this.GOTGPage);
             this.UITabControl.Controls.Add(this.BranchPage);
             this.UITabControl.Controls.Add(this.DekleinPage);
             this.UITabControl.Controls.Add(this.TenalPage);
@@ -475,7 +462,7 @@ namespace Taco
             this.UITabControl.Name = "UITabControl";
             this.UITabControl.Padding = new System.Drawing.Point(0, 0);
             this.UITabControl.SelectedIndex = 0;
-            this.UITabControl.Size = new System.Drawing.Size(450, 681);
+            this.UITabControl.Size = new System.Drawing.Size(450, 623);
             this.UITabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.UITabControl.TabIndex = 19;
             // 
@@ -485,17 +472,41 @@ namespace Taco
             this.CombinedPage.Location = new System.Drawing.Point(4, 22);
             this.CombinedPage.Margin = new System.Windows.Forms.Padding(0);
             this.CombinedPage.Name = "CombinedPage";
-            this.CombinedPage.Size = new System.Drawing.Size(442, 655);
+            this.CombinedPage.Size = new System.Drawing.Size(442, 597);
             this.CombinedPage.TabIndex = 0;
             this.CombinedPage.Text = "All";
             this.CombinedPage.UseVisualStyleBackColor = true;
+            // 
+            // GOTGPage
+            // 
+            this.GOTGPage.Controls.Add(this.GOTGIntel);
+            this.GOTGPage.Location = new System.Drawing.Point(4, 22);
+            this.GOTGPage.Name = "GOTGPage";
+            this.GOTGPage.Padding = new System.Windows.Forms.Padding(3);
+            this.GOTGPage.Size = new System.Drawing.Size(442, 597);
+            this.GOTGPage.TabIndex = 14;
+            this.GOTGPage.Text = "GOTG";
+            this.GOTGPage.UseVisualStyleBackColor = true;
+            // 
+            // GOTGIntel
+            // 
+            this.GOTGIntel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GOTGIntel.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GOTGIntel.Location = new System.Drawing.Point(-4, 0);
+            this.GOTGIntel.Multiline = true;
+            this.GOTGIntel.Name = "GOTGIntel";
+            this.GOTGIntel.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.GOTGIntel.Size = new System.Drawing.Size(447, 599);
+            this.GOTGIntel.TabIndex = 0;
+            this.GOTGIntel.WordWrap = false;
             // 
             // BranchPage
             // 
             this.BranchPage.Controls.Add(this.BranchIntel);
             this.BranchPage.Location = new System.Drawing.Point(4, 22);
             this.BranchPage.Name = "BranchPage";
-            this.BranchPage.Size = new System.Drawing.Size(442, 655);
+            this.BranchPage.Size = new System.Drawing.Size(442, 597);
             this.BranchPage.TabIndex = 2;
             this.BranchPage.Text = "Brn";
             this.BranchPage.UseVisualStyleBackColor = true;
@@ -509,7 +520,7 @@ namespace Taco
             this.BranchIntel.Multiline = true;
             this.BranchIntel.Name = "BranchIntel";
             this.BranchIntel.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.BranchIntel.Size = new System.Drawing.Size(447, 655);
+            this.BranchIntel.Size = new System.Drawing.Size(447, 599);
             this.BranchIntel.TabIndex = 13;
             this.BranchIntel.WordWrap = false;
             // 
@@ -518,7 +529,7 @@ namespace Taco
             this.DekleinPage.Controls.Add(this.DekleinIntel);
             this.DekleinPage.Location = new System.Drawing.Point(4, 22);
             this.DekleinPage.Name = "DekleinPage";
-            this.DekleinPage.Size = new System.Drawing.Size(442, 655);
+            this.DekleinPage.Size = new System.Drawing.Size(442, 597);
             this.DekleinPage.TabIndex = 3;
             this.DekleinPage.Text = "Dek";
             this.DekleinPage.UseVisualStyleBackColor = true;
@@ -532,7 +543,7 @@ namespace Taco
             this.DekleinIntel.Multiline = true;
             this.DekleinIntel.Name = "DekleinIntel";
             this.DekleinIntel.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.DekleinIntel.Size = new System.Drawing.Size(447, 655);
+            this.DekleinIntel.Size = new System.Drawing.Size(447, 599);
             this.DekleinIntel.TabIndex = 0;
             this.DekleinIntel.WordWrap = false;
             // 
@@ -541,7 +552,7 @@ namespace Taco
             this.TenalPage.Controls.Add(this.TenalIntel);
             this.TenalPage.Location = new System.Drawing.Point(4, 22);
             this.TenalPage.Name = "TenalPage";
-            this.TenalPage.Size = new System.Drawing.Size(442, 655);
+            this.TenalPage.Size = new System.Drawing.Size(442, 597);
             this.TenalPage.TabIndex = 4;
             this.TenalPage.Text = "Tnl";
             this.TenalPage.UseVisualStyleBackColor = true;
@@ -555,7 +566,7 @@ namespace Taco
             this.TenalIntel.Multiline = true;
             this.TenalIntel.Name = "TenalIntel";
             this.TenalIntel.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.TenalIntel.Size = new System.Drawing.Size(447, 655);
+            this.TenalIntel.Size = new System.Drawing.Size(447, 599);
             this.TenalIntel.TabIndex = 0;
             this.TenalIntel.WordWrap = false;
             // 
@@ -564,7 +575,7 @@ namespace Taco
             this.VenalPage.Controls.Add(this.VenalIntel);
             this.VenalPage.Location = new System.Drawing.Point(4, 22);
             this.VenalPage.Name = "VenalPage";
-            this.VenalPage.Size = new System.Drawing.Size(442, 655);
+            this.VenalPage.Size = new System.Drawing.Size(442, 597);
             this.VenalPage.TabIndex = 5;
             this.VenalPage.Text = "Vnl";
             this.VenalPage.UseVisualStyleBackColor = true;
@@ -578,7 +589,7 @@ namespace Taco
             this.VenalIntel.Multiline = true;
             this.VenalIntel.Name = "VenalIntel";
             this.VenalIntel.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.VenalIntel.Size = new System.Drawing.Size(447, 655);
+            this.VenalIntel.Size = new System.Drawing.Size(447, 599);
             this.VenalIntel.TabIndex = 0;
             this.VenalIntel.WordWrap = false;
             // 
@@ -587,7 +598,7 @@ namespace Taco
             this.FadePage.Controls.Add(this.FadeIntel);
             this.FadePage.Location = new System.Drawing.Point(4, 22);
             this.FadePage.Name = "FadePage";
-            this.FadePage.Size = new System.Drawing.Size(442, 655);
+            this.FadePage.Size = new System.Drawing.Size(442, 597);
             this.FadePage.TabIndex = 8;
             this.FadePage.Text = "Fade";
             this.FadePage.UseVisualStyleBackColor = true;
@@ -601,7 +612,7 @@ namespace Taco
             this.FadeIntel.Multiline = true;
             this.FadeIntel.Name = "FadeIntel";
             this.FadeIntel.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.FadeIntel.Size = new System.Drawing.Size(447, 655);
+            this.FadeIntel.Size = new System.Drawing.Size(447, 599);
             this.FadeIntel.TabIndex = 0;
             this.FadeIntel.WordWrap = false;
             // 
@@ -610,7 +621,7 @@ namespace Taco
             this.PureBlindPage.Controls.Add(this.PureBlindIntel);
             this.PureBlindPage.Location = new System.Drawing.Point(4, 22);
             this.PureBlindPage.Name = "PureBlindPage";
-            this.PureBlindPage.Size = new System.Drawing.Size(442, 655);
+            this.PureBlindPage.Size = new System.Drawing.Size(442, 597);
             this.PureBlindPage.TabIndex = 9;
             this.PureBlindPage.Text = "PB";
             this.PureBlindPage.UseVisualStyleBackColor = true;
@@ -624,7 +635,7 @@ namespace Taco
             this.PureBlindIntel.Multiline = true;
             this.PureBlindIntel.Name = "PureBlindIntel";
             this.PureBlindIntel.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.PureBlindIntel.Size = new System.Drawing.Size(447, 655);
+            this.PureBlindIntel.Size = new System.Drawing.Size(447, 599);
             this.PureBlindIntel.TabIndex = 0;
             this.PureBlindIntel.WordWrap = false;
             // 
@@ -634,7 +645,7 @@ namespace Taco
             this.TributePage.Controls.Add(this.textBox1);
             this.TributePage.Location = new System.Drawing.Point(4, 22);
             this.TributePage.Name = "TributePage";
-            this.TributePage.Size = new System.Drawing.Size(442, 655);
+            this.TributePage.Size = new System.Drawing.Size(442, 597);
             this.TributePage.TabIndex = 10;
             this.TributePage.Text = "Tri";
             this.TributePage.UseVisualStyleBackColor = true;
@@ -648,7 +659,7 @@ namespace Taco
             this.TributeIntel.Multiline = true;
             this.TributeIntel.Name = "TributeIntel";
             this.TributeIntel.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.TributeIntel.Size = new System.Drawing.Size(447, 655);
+            this.TributeIntel.Size = new System.Drawing.Size(447, 599);
             this.TributeIntel.TabIndex = 19;
             this.TributeIntel.WordWrap = false;
             // 
@@ -660,7 +671,7 @@ namespace Taco
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox1.Size = new System.Drawing.Size(447, 655);
+            this.textBox1.Size = new System.Drawing.Size(447, 599);
             this.textBox1.TabIndex = 0;
             // 
             // ValePage
@@ -668,7 +679,7 @@ namespace Taco
             this.ValePage.Controls.Add(this.ValeIntel);
             this.ValePage.Location = new System.Drawing.Point(4, 22);
             this.ValePage.Name = "ValePage";
-            this.ValePage.Size = new System.Drawing.Size(442, 655);
+            this.ValePage.Size = new System.Drawing.Size(442, 597);
             this.ValePage.TabIndex = 11;
             this.ValePage.Text = "Vale";
             this.ValePage.UseVisualStyleBackColor = true;
@@ -682,7 +693,7 @@ namespace Taco
             this.ValeIntel.Multiline = true;
             this.ValeIntel.Name = "ValeIntel";
             this.ValeIntel.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.ValeIntel.Size = new System.Drawing.Size(447, 655);
+            this.ValeIntel.Size = new System.Drawing.Size(447, 599);
             this.ValeIntel.TabIndex = 0;
             this.ValeIntel.WordWrap = false;
             // 
@@ -691,7 +702,7 @@ namespace Taco
             this.ProvidencePage.Controls.Add(this.ProvidenceIntel);
             this.ProvidencePage.Location = new System.Drawing.Point(4, 22);
             this.ProvidencePage.Name = "ProvidencePage";
-            this.ProvidencePage.Size = new System.Drawing.Size(442, 655);
+            this.ProvidencePage.Size = new System.Drawing.Size(442, 597);
             this.ProvidencePage.TabIndex = 12;
             this.ProvidencePage.Text = "Provi";
             this.ProvidencePage.UseVisualStyleBackColor = true;
@@ -705,7 +716,7 @@ namespace Taco
             this.ProvidenceIntel.Multiline = true;
             this.ProvidenceIntel.Name = "ProvidenceIntel";
             this.ProvidenceIntel.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.ProvidenceIntel.Size = new System.Drawing.Size(447, 655);
+            this.ProvidenceIntel.Size = new System.Drawing.Size(447, 599);
             this.ProvidenceIntel.TabIndex = 0;
             this.ProvidenceIntel.WordWrap = false;
             // 
@@ -714,7 +725,7 @@ namespace Taco
             this.DelvePage.Controls.Add(this.DelveIntel);
             this.DelvePage.Location = new System.Drawing.Point(4, 22);
             this.DelvePage.Name = "DelvePage";
-            this.DelvePage.Size = new System.Drawing.Size(442, 655);
+            this.DelvePage.Size = new System.Drawing.Size(442, 597);
             this.DelvePage.TabIndex = 13;
             this.DelvePage.Text = "Delve";
             this.DelvePage.UseVisualStyleBackColor = true;
@@ -728,7 +739,7 @@ namespace Taco
             this.DelveIntel.Multiline = true;
             this.DelveIntel.Name = "DelveIntel";
             this.DelveIntel.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.DelveIntel.Size = new System.Drawing.Size(447, 655);
+            this.DelveIntel.Size = new System.Drawing.Size(447, 599);
             this.DelveIntel.TabIndex = 0;
             this.DelveIntel.WordWrap = false;
             // 
@@ -738,7 +749,7 @@ namespace Taco
             this.ConfigPage.Location = new System.Drawing.Point(4, 22);
             this.ConfigPage.Name = "ConfigPage";
             this.ConfigPage.Padding = new System.Windows.Forms.Padding(3);
-            this.ConfigPage.Size = new System.Drawing.Size(442, 655);
+            this.ConfigPage.Size = new System.Drawing.Size(442, 597);
             this.ConfigPage.TabIndex = 1;
             this.ConfigPage.Text = "Config";
             this.ConfigPage.UseVisualStyleBackColor = true;
@@ -754,10 +765,10 @@ namespace Taco
             this.tabControl1.Controls.Add(this.MiscSettingsPage);
             this.tabControl1.Controls.Add(this.InfoPage);
             this.tabControl1.ItemSize = new System.Drawing.Size(85, 18);
-            this.tabControl1.Location = new System.Drawing.Point(6, 7);
+            this.tabControl1.Location = new System.Drawing.Point(6, 6);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(430, 642);
+            this.tabControl1.Size = new System.Drawing.Size(430, 587);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 18;
             // 
@@ -768,13 +779,14 @@ namespace Taco
             this.ChannelsPage.Location = new System.Drawing.Point(4, 22);
             this.ChannelsPage.Name = "ChannelsPage";
             this.ChannelsPage.Padding = new System.Windows.Forms.Padding(3);
-            this.ChannelsPage.Size = new System.Drawing.Size(422, 616);
+            this.ChannelsPage.Size = new System.Drawing.Size(422, 561);
             this.ChannelsPage.TabIndex = 0;
             this.ChannelsPage.Text = "Channels";
             this.ChannelsPage.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.MonitorGOTG);
             this.groupBox1.Controls.Add(this.MonitorDelve);
             this.groupBox1.Controls.Add(this.MonitorProvidence);
             this.groupBox1.Controls.Add(this.MonitorVale);
@@ -788,19 +800,32 @@ namespace Taco
             this.groupBox1.Controls.Add(this.MonitorVenal);
             this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(202, 274);
+            this.groupBox1.Size = new System.Drawing.Size(202, 273);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Channels to Monitor";
+            // 
+            // MonitorGOTG
+            // 
+            this.MonitorGOTG.AutoSize = true;
+            this.MonitorGOTG.Checked = true;
+            this.MonitorGOTG.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.MonitorGOTG.Location = new System.Drawing.Point(7, 231);
+            this.MonitorGOTG.Name = "MonitorGOTG";
+            this.MonitorGOTG.Size = new System.Drawing.Size(48, 16);
+            this.MonitorGOTG.TabIndex = 16;
+            this.MonitorGOTG.Text = "GOTG";
+            this.MonitorGOTG.UseVisualStyleBackColor = true;
+            this.MonitorGOTG.CheckedChanged += new System.EventHandler(this.MonitorGOTG_CheckedChanged);
             // 
             // MonitorDelve
             // 
             this.MonitorDelve.AutoSize = true;
             this.MonitorDelve.Checked = true;
             this.MonitorDelve.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.MonitorDelve.Location = new System.Drawing.Point(6, 225);
+            this.MonitorDelve.Location = new System.Drawing.Point(6, 208);
             this.MonitorDelve.Name = "MonitorDelve";
-            this.MonitorDelve.Size = new System.Drawing.Size(54, 17);
+            this.MonitorDelve.Size = new System.Drawing.Size(54, 16);
             this.MonitorDelve.TabIndex = 15;
             this.MonitorDelve.Text = "Delve";
             this.MonitorDelve.UseVisualStyleBackColor = true;
@@ -811,9 +836,9 @@ namespace Taco
             this.MonitorProvidence.AutoSize = true;
             this.MonitorProvidence.Checked = true;
             this.MonitorProvidence.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.MonitorProvidence.Location = new System.Drawing.Point(6, 202);
+            this.MonitorProvidence.Location = new System.Drawing.Point(6, 186);
             this.MonitorProvidence.Name = "MonitorProvidence";
-            this.MonitorProvidence.Size = new System.Drawing.Size(80, 17);
+            this.MonitorProvidence.Size = new System.Drawing.Size(84, 16);
             this.MonitorProvidence.TabIndex = 14;
             this.MonitorProvidence.Text = "Providence";
             this.MonitorProvidence.UseVisualStyleBackColor = true;
@@ -824,9 +849,9 @@ namespace Taco
             this.MonitorVale.AutoSize = true;
             this.MonitorVale.Checked = true;
             this.MonitorVale.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.MonitorVale.Location = new System.Drawing.Point(6, 179);
+            this.MonitorVale.Location = new System.Drawing.Point(6, 165);
             this.MonitorVale.Name = "MonitorVale";
-            this.MonitorVale.Size = new System.Drawing.Size(106, 17);
+            this.MonitorVale.Size = new System.Drawing.Size(132, 16);
             this.MonitorVale.TabIndex = 13;
             this.MonitorVale.Text = "Vale of the Silent";
             this.MonitorVale.UseVisualStyleBackColor = true;
@@ -837,9 +862,9 @@ namespace Taco
             this.MonitorTribute.AutoSize = true;
             this.MonitorTribute.Checked = true;
             this.MonitorTribute.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.MonitorTribute.Location = new System.Drawing.Point(6, 156);
+            this.MonitorTribute.Location = new System.Drawing.Point(6, 144);
             this.MonitorTribute.Name = "MonitorTribute";
-            this.MonitorTribute.Size = new System.Drawing.Size(59, 17);
+            this.MonitorTribute.Size = new System.Drawing.Size(66, 16);
             this.MonitorTribute.TabIndex = 12;
             this.MonitorTribute.Text = "Tribute";
             this.MonitorTribute.UseVisualStyleBackColor = true;
@@ -850,9 +875,9 @@ namespace Taco
             this.MonitorPureBlind.AutoSize = true;
             this.MonitorPureBlind.Checked = true;
             this.MonitorPureBlind.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.MonitorPureBlind.Location = new System.Drawing.Point(6, 133);
+            this.MonitorPureBlind.Location = new System.Drawing.Point(6, 123);
             this.MonitorPureBlind.Name = "MonitorPureBlind";
-            this.MonitorPureBlind.Size = new System.Drawing.Size(74, 17);
+            this.MonitorPureBlind.Size = new System.Drawing.Size(84, 16);
             this.MonitorPureBlind.TabIndex = 11;
             this.MonitorPureBlind.Text = "Pure Blind";
             this.MonitorPureBlind.UseVisualStyleBackColor = true;
@@ -863,9 +888,9 @@ namespace Taco
             this.MonitorFade.AutoSize = true;
             this.MonitorFade.Checked = true;
             this.MonitorFade.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.MonitorFade.Location = new System.Drawing.Point(6, 110);
+            this.MonitorFade.Location = new System.Drawing.Point(6, 102);
             this.MonitorFade.Name = "MonitorFade";
-            this.MonitorFade.Size = new System.Drawing.Size(50, 17);
+            this.MonitorFade.Size = new System.Drawing.Size(48, 16);
             this.MonitorFade.TabIndex = 10;
             this.MonitorFade.Text = "Fade";
             this.MonitorFade.UseVisualStyleBackColor = true;
@@ -876,9 +901,9 @@ namespace Taco
             this.MonitorGameLog.AutoSize = true;
             this.MonitorGameLog.Checked = true;
             this.MonitorGameLog.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.MonitorGameLog.Location = new System.Drawing.Point(6, 248);
+            this.MonitorGameLog.Location = new System.Drawing.Point(6, 253);
             this.MonitorGameLog.Name = "MonitorGameLog";
-            this.MonitorGameLog.Size = new System.Drawing.Size(75, 17);
+            this.MonitorGameLog.Size = new System.Drawing.Size(72, 16);
             this.MonitorGameLog.TabIndex = 9;
             this.MonitorGameLog.Text = "Game Log";
             this.MonitorGameLog.UseVisualStyleBackColor = true;
@@ -886,6 +911,7 @@ namespace Taco
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.AlertGOTG);
             this.groupBox3.Controls.Add(this.AlertDelve);
             this.groupBox3.Controls.Add(this.AlertProvidence);
             this.groupBox3.Controls.Add(this.AlertVale);
@@ -898,17 +924,30 @@ namespace Taco
             this.groupBox3.Controls.Add(this.AlertBranch);
             this.groupBox3.Location = new System.Drawing.Point(214, 6);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(202, 274);
+            this.groupBox3.Size = new System.Drawing.Size(202, 285);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Alert Auto-focus Channels";
             // 
+            // AlertGOTG
+            // 
+            this.AlertGOTG.AutoSize = true;
+            this.AlertGOTG.Checked = true;
+            this.AlertGOTG.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AlertGOTG.Location = new System.Drawing.Point(6, 230);
+            this.AlertGOTG.Name = "AlertGOTG";
+            this.AlertGOTG.Size = new System.Drawing.Size(48, 16);
+            this.AlertGOTG.TabIndex = 10;
+            this.AlertGOTG.Text = "GOTG";
+            this.AlertGOTG.UseVisualStyleBackColor = true;
+            this.AlertGOTG.CheckedChanged += new System.EventHandler(this.AlertGOTG_CheckedChanged);
+            // 
             // AlertDelve
             // 
             this.AlertDelve.AutoSize = true;
-            this.AlertDelve.Location = new System.Drawing.Point(6, 225);
+            this.AlertDelve.Location = new System.Drawing.Point(6, 208);
             this.AlertDelve.Name = "AlertDelve";
-            this.AlertDelve.Size = new System.Drawing.Size(54, 17);
+            this.AlertDelve.Size = new System.Drawing.Size(54, 16);
             this.AlertDelve.TabIndex = 9;
             this.AlertDelve.Text = "Delve";
             this.AlertDelve.UseVisualStyleBackColor = true;
@@ -917,9 +956,9 @@ namespace Taco
             // AlertProvidence
             // 
             this.AlertProvidence.AutoSize = true;
-            this.AlertProvidence.Location = new System.Drawing.Point(6, 202);
+            this.AlertProvidence.Location = new System.Drawing.Point(6, 186);
             this.AlertProvidence.Name = "AlertProvidence";
-            this.AlertProvidence.Size = new System.Drawing.Size(80, 17);
+            this.AlertProvidence.Size = new System.Drawing.Size(84, 16);
             this.AlertProvidence.TabIndex = 8;
             this.AlertProvidence.Text = "Providence";
             this.AlertProvidence.UseVisualStyleBackColor = true;
@@ -928,9 +967,9 @@ namespace Taco
             // AlertVale
             // 
             this.AlertVale.AutoSize = true;
-            this.AlertVale.Location = new System.Drawing.Point(6, 179);
+            this.AlertVale.Location = new System.Drawing.Point(6, 165);
             this.AlertVale.Name = "AlertVale";
-            this.AlertVale.Size = new System.Drawing.Size(106, 17);
+            this.AlertVale.Size = new System.Drawing.Size(132, 16);
             this.AlertVale.TabIndex = 7;
             this.AlertVale.Text = "Vale of the Silent";
             this.AlertVale.UseVisualStyleBackColor = true;
@@ -939,9 +978,9 @@ namespace Taco
             // AlertTribute
             // 
             this.AlertTribute.AutoSize = true;
-            this.AlertTribute.Location = new System.Drawing.Point(6, 156);
+            this.AlertTribute.Location = new System.Drawing.Point(6, 144);
             this.AlertTribute.Name = "AlertTribute";
-            this.AlertTribute.Size = new System.Drawing.Size(59, 17);
+            this.AlertTribute.Size = new System.Drawing.Size(66, 16);
             this.AlertTribute.TabIndex = 6;
             this.AlertTribute.Text = "Tribute";
             this.AlertTribute.UseVisualStyleBackColor = true;
@@ -950,9 +989,9 @@ namespace Taco
             // AlertPureBlind
             // 
             this.AlertPureBlind.AutoSize = true;
-            this.AlertPureBlind.Location = new System.Drawing.Point(6, 133);
+            this.AlertPureBlind.Location = new System.Drawing.Point(6, 123);
             this.AlertPureBlind.Name = "AlertPureBlind";
-            this.AlertPureBlind.Size = new System.Drawing.Size(74, 17);
+            this.AlertPureBlind.Size = new System.Drawing.Size(84, 16);
             this.AlertPureBlind.TabIndex = 5;
             this.AlertPureBlind.Text = "Pure Blind";
             this.AlertPureBlind.UseVisualStyleBackColor = true;
@@ -961,9 +1000,9 @@ namespace Taco
             // AlertFade
             // 
             this.AlertFade.AutoSize = true;
-            this.AlertFade.Location = new System.Drawing.Point(6, 110);
+            this.AlertFade.Location = new System.Drawing.Point(6, 102);
             this.AlertFade.Name = "AlertFade";
-            this.AlertFade.Size = new System.Drawing.Size(50, 17);
+            this.AlertFade.Size = new System.Drawing.Size(48, 16);
             this.AlertFade.TabIndex = 4;
             this.AlertFade.Text = "Fade";
             this.AlertFade.UseVisualStyleBackColor = true;
@@ -972,9 +1011,9 @@ namespace Taco
             // AlertVenal
             // 
             this.AlertVenal.AutoSize = true;
-            this.AlertVenal.Location = new System.Drawing.Point(6, 88);
+            this.AlertVenal.Location = new System.Drawing.Point(6, 81);
             this.AlertVenal.Name = "AlertVenal";
-            this.AlertVenal.Size = new System.Drawing.Size(53, 17);
+            this.AlertVenal.Size = new System.Drawing.Size(54, 16);
             this.AlertVenal.TabIndex = 3;
             this.AlertVenal.Text = "Venal";
             this.AlertVenal.UseVisualStyleBackColor = true;
@@ -983,9 +1022,9 @@ namespace Taco
             // AlertTenal
             // 
             this.AlertTenal.AutoSize = true;
-            this.AlertTenal.Location = new System.Drawing.Point(6, 65);
+            this.AlertTenal.Location = new System.Drawing.Point(6, 60);
             this.AlertTenal.Name = "AlertTenal";
-            this.AlertTenal.Size = new System.Drawing.Size(53, 17);
+            this.AlertTenal.Size = new System.Drawing.Size(54, 16);
             this.AlertTenal.TabIndex = 2;
             this.AlertTenal.Text = "Tenal";
             this.AlertTenal.UseVisualStyleBackColor = true;
@@ -994,9 +1033,9 @@ namespace Taco
             // AlertDeklein
             // 
             this.AlertDeklein.AutoSize = true;
-            this.AlertDeklein.Location = new System.Drawing.Point(6, 42);
+            this.AlertDeklein.Location = new System.Drawing.Point(6, 39);
             this.AlertDeklein.Name = "AlertDeklein";
-            this.AlertDeklein.Size = new System.Drawing.Size(62, 17);
+            this.AlertDeklein.Size = new System.Drawing.Size(66, 16);
             this.AlertDeklein.TabIndex = 1;
             this.AlertDeklein.Text = "Deklein";
             this.AlertDeklein.UseVisualStyleBackColor = true;
@@ -1005,9 +1044,9 @@ namespace Taco
             // AlertBranch
             // 
             this.AlertBranch.AutoSize = true;
-            this.AlertBranch.Location = new System.Drawing.Point(6, 19);
+            this.AlertBranch.Location = new System.Drawing.Point(6, 18);
             this.AlertBranch.Name = "AlertBranch";
-            this.AlertBranch.Size = new System.Drawing.Size(60, 17);
+            this.AlertBranch.Size = new System.Drawing.Size(60, 16);
             this.AlertBranch.TabIndex = 0;
             this.AlertBranch.Text = "Branch";
             this.AlertBranch.UseVisualStyleBackColor = true;
@@ -1021,7 +1060,7 @@ namespace Taco
             this.AlertManagementPage.Location = new System.Drawing.Point(4, 22);
             this.AlertManagementPage.Name = "AlertManagementPage";
             this.AlertManagementPage.Padding = new System.Windows.Forms.Padding(3);
-            this.AlertManagementPage.Size = new System.Drawing.Size(422, 616);
+            this.AlertManagementPage.Size = new System.Drawing.Size(422, 561);
             this.AlertManagementPage.TabIndex = 1;
             this.AlertManagementPage.Text = "Alerts";
             this.AlertManagementPage.UseVisualStyleBackColor = true;
@@ -1037,19 +1076,30 @@ namespace Taco
             this.AddCustomAlertGroup.Controls.Add(this.CustomAlertRepeatInterval);
             this.AddCustomAlertGroup.Controls.Add(this.NewCustomAlertText);
             this.AddCustomAlertGroup.Controls.Add(this.AddNewCustomAlert);
-            this.AddCustomAlertGroup.Location = new System.Drawing.Point(6, 426);
+            this.AddCustomAlertGroup.Location = new System.Drawing.Point(6, 393);
             this.AddCustomAlertGroup.Name = "AddCustomAlertGroup";
-            this.AddCustomAlertGroup.Size = new System.Drawing.Size(410, 78);
+            this.AddCustomAlertGroup.Size = new System.Drawing.Size(410, 72);
             this.AddCustomAlertGroup.TabIndex = 9;
             this.AddCustomAlertGroup.TabStop = false;
             this.AddCustomAlertGroup.Text = "Add Custom Text Alert";
             // 
+            // SaveCustomAlert
+            // 
+            this.SaveCustomAlert.Location = new System.Drawing.Point(356, 42);
+            this.SaveCustomAlert.Name = "SaveCustomAlert";
+            this.SaveCustomAlert.Size = new System.Drawing.Size(48, 21);
+            this.SaveCustomAlert.TabIndex = 18;
+            this.SaveCustomAlert.Text = "Save";
+            this.SaveCustomAlert.UseVisualStyleBackColor = true;
+            this.SaveCustomAlert.Visible = false;
+            this.SaveCustomAlert.Click += new System.EventHandler(this.SaveCustomAlert_Click);
+            // 
             // PlayCustomTextAlertSound
             // 
             this.PlayCustomTextAlertSound.AutoSize = true;
-            this.PlayCustomTextAlertSound.Location = new System.Drawing.Point(6, 51);
+            this.PlayCustomTextAlertSound.Location = new System.Drawing.Point(6, 47);
             this.PlayCustomTextAlertSound.Name = "PlayCustomTextAlertSound";
-            this.PlayCustomTextAlertSound.Size = new System.Drawing.Size(27, 13);
+            this.PlayCustomTextAlertSound.Size = new System.Drawing.Size(29, 12);
             this.PlayCustomTextAlertSound.TabIndex = 8;
             this.PlayCustomTextAlertSound.TabStop = true;
             this.PlayCustomTextAlertSound.Text = "Play";
@@ -1058,63 +1108,63 @@ namespace Taco
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, 22);
+            this.label1.Location = new System.Drawing.Point(0, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 13);
+            this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 7;
             this.label1.Text = "Trigger:";
             // 
             // CustomTextAlertSound
             // 
             this.CustomTextAlertSound.FormattingEnabled = true;
-            this.CustomTextAlertSound.Location = new System.Drawing.Point(36, 48);
+            this.CustomTextAlertSound.Location = new System.Drawing.Point(36, 44);
             this.CustomTextAlertSound.Name = "CustomTextAlertSound";
-            this.CustomTextAlertSound.Size = new System.Drawing.Size(314, 21);
+            this.CustomTextAlertSound.Size = new System.Drawing.Size(314, 20);
             this.CustomTextAlertSound.TabIndex = 6;
             this.CustomTextAlertSound.SelectedIndexChanged += new System.EventHandler(this.CustomTextAlertSound_SelectedIndexChanged);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(374, 22);
+            this.label7.Location = new System.Drawing.Point(374, 20);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(29, 13);
+            this.label7.Size = new System.Drawing.Size(29, 12);
             this.label7.TabIndex = 5;
             this.label7.Text = "secs";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(254, 22);
+            this.label5.Location = new System.Drawing.Point(254, 20);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(69, 13);
+            this.label5.Size = new System.Drawing.Size(83, 12);
             this.label5.TabIndex = 4;
             this.label5.Text = "Trigger every";
             // 
             // CustomAlertRepeatInterval
             // 
-            this.CustomAlertRepeatInterval.Location = new System.Drawing.Point(329, 20);
+            this.CustomAlertRepeatInterval.Location = new System.Drawing.Point(329, 18);
             this.CustomAlertRepeatInterval.Maximum = new decimal(new int[] {
             999,
             0,
             0,
             0});
             this.CustomAlertRepeatInterval.Name = "CustomAlertRepeatInterval";
-            this.CustomAlertRepeatInterval.Size = new System.Drawing.Size(39, 20);
+            this.CustomAlertRepeatInterval.Size = new System.Drawing.Size(39, 21);
             this.CustomAlertRepeatInterval.TabIndex = 3;
             // 
             // NewCustomAlertText
             // 
-            this.NewCustomAlertText.Location = new System.Drawing.Point(49, 19);
+            this.NewCustomAlertText.Location = new System.Drawing.Point(49, 18);
             this.NewCustomAlertText.Name = "NewCustomAlertText";
-            this.NewCustomAlertText.Size = new System.Drawing.Size(199, 20);
+            this.NewCustomAlertText.Size = new System.Drawing.Size(199, 21);
             this.NewCustomAlertText.TabIndex = 2;
             // 
             // AddNewCustomAlert
             // 
-            this.AddNewCustomAlert.Location = new System.Drawing.Point(356, 46);
+            this.AddNewCustomAlert.Location = new System.Drawing.Point(356, 42);
             this.AddNewCustomAlert.Name = "AddNewCustomAlert";
-            this.AddNewCustomAlert.Size = new System.Drawing.Size(48, 23);
+            this.AddNewCustomAlert.Size = new System.Drawing.Size(48, 21);
             this.AddNewCustomAlert.TabIndex = 1;
             this.AddNewCustomAlert.Text = "Add";
             this.AddNewCustomAlert.UseVisualStyleBackColor = true;
@@ -1137,19 +1187,30 @@ namespace Taco
             this.AddRangeAlertGroup.Controls.Add(this.RangeAlertSystem);
             this.AddRangeAlertGroup.Controls.Add(this.RangeAlertCharacter);
             this.AddRangeAlertGroup.Controls.Add(this.comboBox1);
-            this.AddRangeAlertGroup.Location = new System.Drawing.Point(6, 317);
+            this.AddRangeAlertGroup.Location = new System.Drawing.Point(6, 293);
             this.AddRangeAlertGroup.Name = "AddRangeAlertGroup";
-            this.AddRangeAlertGroup.Size = new System.Drawing.Size(410, 103);
+            this.AddRangeAlertGroup.Size = new System.Drawing.Size(410, 95);
             this.AddRangeAlertGroup.TabIndex = 8;
             this.AddRangeAlertGroup.TabStop = false;
             this.AddRangeAlertGroup.Text = "Add Range Based Alert";
             // 
+            // SaveRangeAlert
+            // 
+            this.SaveRangeAlert.Location = new System.Drawing.Point(355, 66);
+            this.SaveRangeAlert.Name = "SaveRangeAlert";
+            this.SaveRangeAlert.Size = new System.Drawing.Size(48, 21);
+            this.SaveRangeAlert.TabIndex = 18;
+            this.SaveRangeAlert.Text = "Save";
+            this.SaveRangeAlert.UseVisualStyleBackColor = true;
+            this.SaveRangeAlert.Visible = false;
+            this.SaveRangeAlert.Click += new System.EventHandler(this.SaveRangeAlert_Click);
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 49);
+            this.label8.Location = new System.Drawing.Point(6, 45);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(40, 13);
+            this.label8.Size = new System.Drawing.Size(47, 12);
             this.label8.TabIndex = 21;
             this.label8.Text = "Select:";
             // 
@@ -1162,18 +1223,18 @@ namespace Taco
             "Any Character",
             "Single System",
             "Single Character"});
-            this.NewRangeAlertType.Location = new System.Drawing.Point(298, 19);
+            this.NewRangeAlertType.Location = new System.Drawing.Point(298, 18);
             this.NewRangeAlertType.Name = "NewRangeAlertType";
-            this.NewRangeAlertType.Size = new System.Drawing.Size(105, 21);
+            this.NewRangeAlertType.Size = new System.Drawing.Size(105, 20);
             this.NewRangeAlertType.TabIndex = 20;
             this.NewRangeAlertType.TextChanged += new System.EventHandler(this.NewRangeAlertType_TextChanged);
             // 
             // PlayRangeAlertSound
             // 
             this.PlayRangeAlertSound.AutoSize = true;
-            this.PlayRangeAlertSound.Location = new System.Drawing.Point(6, 76);
+            this.PlayRangeAlertSound.Location = new System.Drawing.Point(6, 70);
             this.PlayRangeAlertSound.Name = "PlayRangeAlertSound";
-            this.PlayRangeAlertSound.Size = new System.Drawing.Size(27, 13);
+            this.PlayRangeAlertSound.Size = new System.Drawing.Size(29, 12);
             this.PlayRangeAlertSound.TabIndex = 9;
             this.PlayRangeAlertSound.TabStop = true;
             this.PlayRangeAlertSound.Text = "Play";
@@ -1181,9 +1242,9 @@ namespace Taco
             // 
             // AddNewRangeAlert
             // 
-            this.AddNewRangeAlert.Location = new System.Drawing.Point(355, 71);
+            this.AddNewRangeAlert.Location = new System.Drawing.Point(355, 66);
             this.AddNewRangeAlert.Name = "AddNewRangeAlert";
-            this.AddNewRangeAlert.Size = new System.Drawing.Size(48, 23);
+            this.AddNewRangeAlert.Size = new System.Drawing.Size(48, 21);
             this.AddNewRangeAlert.TabIndex = 0;
             this.AddNewRangeAlert.Text = "Add";
             this.AddNewRangeAlert.UseVisualStyleBackColor = true;
@@ -1192,18 +1253,18 @@ namespace Taco
             // RangeAlertSound
             // 
             this.RangeAlertSound.FormattingEnabled = true;
-            this.RangeAlertSound.Location = new System.Drawing.Point(36, 73);
+            this.RangeAlertSound.Location = new System.Drawing.Point(36, 67);
             this.RangeAlertSound.Name = "RangeAlertSound";
-            this.RangeAlertSound.Size = new System.Drawing.Size(314, 21);
+            this.RangeAlertSound.Size = new System.Drawing.Size(314, 20);
             this.RangeAlertSound.TabIndex = 10;
             this.RangeAlertSound.SelectedIndexChanged += new System.EventHandler(this.RangeAlertSound_SelectedIndexChanged);
             // 
             // LowerAlertRange
             // 
             this.LowerAlertRange.Enabled = false;
-            this.LowerAlertRange.Location = new System.Drawing.Point(191, 20);
+            this.LowerAlertRange.Location = new System.Drawing.Point(191, 18);
             this.LowerAlertRange.Name = "LowerAlertRange";
-            this.LowerAlertRange.Size = new System.Drawing.Size(35, 20);
+            this.LowerAlertRange.Size = new System.Drawing.Size(35, 21);
             this.LowerAlertRange.TabIndex = 11;
             // 
             // LowerLimitOperator
@@ -1213,17 +1274,17 @@ namespace Taco
             this.LowerLimitOperator.Items.AddRange(new object[] {
             ">",
             ">="});
-            this.LowerLimitOperator.Location = new System.Drawing.Point(151, 19);
+            this.LowerLimitOperator.Location = new System.Drawing.Point(151, 18);
             this.LowerLimitOperator.Name = "LowerLimitOperator";
-            this.LowerLimitOperator.Size = new System.Drawing.Size(34, 21);
+            this.LowerLimitOperator.Size = new System.Drawing.Size(34, 20);
             this.LowerLimitOperator.TabIndex = 10;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(90, 22);
+            this.label2.Location = new System.Drawing.Point(90, 20);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(55, 13);
+            this.label2.Size = new System.Drawing.Size(59, 12);
             this.label2.TabIndex = 9;
             this.label2.Text = "jumps and";
             // 
@@ -1233,25 +1294,25 @@ namespace Taco
             this.UpperLimitOperator.Items.AddRange(new object[] {
             "=",
             "<="});
-            this.UpperLimitOperator.Location = new System.Drawing.Point(9, 19);
+            this.UpperLimitOperator.Location = new System.Drawing.Point(9, 18);
             this.UpperLimitOperator.Name = "UpperLimitOperator";
-            this.UpperLimitOperator.Size = new System.Drawing.Size(34, 21);
+            this.UpperLimitOperator.Size = new System.Drawing.Size(34, 20);
             this.UpperLimitOperator.TabIndex = 8;
             this.UpperLimitOperator.SelectedIndexChanged += new System.EventHandler(this.UpperLimitOperator_SelectedIndexChanged);
             // 
             // UpperAlertRange
             // 
-            this.UpperAlertRange.Location = new System.Drawing.Point(49, 20);
+            this.UpperAlertRange.Location = new System.Drawing.Point(49, 18);
             this.UpperAlertRange.Name = "UpperAlertRange";
-            this.UpperAlertRange.Size = new System.Drawing.Size(35, 20);
+            this.UpperAlertRange.Size = new System.Drawing.Size(35, 21);
             this.UpperAlertRange.TabIndex = 4;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(232, 22);
+            this.label6.Location = new System.Drawing.Point(232, 20);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(60, 13);
+            this.label6.Size = new System.Drawing.Size(71, 12);
             this.label6.TabIndex = 5;
             this.label6.Text = "jumps from:";
             // 
@@ -1259,9 +1320,9 @@ namespace Taco
             // 
             this.RangeAlertSystem.Enabled = false;
             this.RangeAlertSystem.FormattingEnabled = true;
-            this.RangeAlertSystem.Location = new System.Drawing.Point(46, 46);
+            this.RangeAlertSystem.Location = new System.Drawing.Point(46, 42);
             this.RangeAlertSystem.Name = "RangeAlertSystem";
-            this.RangeAlertSystem.Size = new System.Drawing.Size(357, 21);
+            this.RangeAlertSystem.Size = new System.Drawing.Size(357, 20);
             this.RangeAlertSystem.TabIndex = 6;
             this.RangeAlertSystem.Visible = false;
             this.RangeAlertSystem.Leave += new System.EventHandler(this.RangeAlertSystem_Leave);
@@ -1273,9 +1334,9 @@ namespace Taco
             this.RangeAlertCharacter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.RangeAlertCharacter.Enabled = false;
             this.RangeAlertCharacter.FormattingEnabled = true;
-            this.RangeAlertCharacter.Location = new System.Drawing.Point(46, 46);
+            this.RangeAlertCharacter.Location = new System.Drawing.Point(46, 42);
             this.RangeAlertCharacter.Name = "RangeAlertCharacter";
-            this.RangeAlertCharacter.Size = new System.Drawing.Size(357, 21);
+            this.RangeAlertCharacter.Size = new System.Drawing.Size(357, 20);
             this.RangeAlertCharacter.TabIndex = 18;
             this.RangeAlertCharacter.Visible = false;
             // 
@@ -1283,9 +1344,9 @@ namespace Taco
             // 
             this.comboBox1.Enabled = false;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(46, 46);
+            this.comboBox1.Location = new System.Drawing.Point(46, 42);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(357, 21);
+            this.comboBox1.Size = new System.Drawing.Size(357, 20);
             this.comboBox1.TabIndex = 22;
             this.comboBox1.Text = "N/A";
             // 
@@ -1300,17 +1361,40 @@ namespace Taco
             this.groupBox9.Controls.Add(this.AlertList);
             this.groupBox9.Location = new System.Drawing.Point(6, 6);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(410, 305);
+            this.groupBox9.Size = new System.Drawing.Size(410, 282);
             this.groupBox9.TabIndex = 17;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Alert List";
             // 
+            // CancelEditSelectedItem
+            // 
+            this.CancelEditSelectedItem.AutoSize = true;
+            this.CancelEditSelectedItem.Location = new System.Drawing.Point(148, 261);
+            this.CancelEditSelectedItem.Name = "CancelEditSelectedItem";
+            this.CancelEditSelectedItem.Size = new System.Drawing.Size(71, 12);
+            this.CancelEditSelectedItem.TabIndex = 24;
+            this.CancelEditSelectedItem.TabStop = true;
+            this.CancelEditSelectedItem.Text = "Cancel Edit";
+            this.CancelEditSelectedItem.Visible = false;
+            this.CancelEditSelectedItem.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.CancelEditSelectedItem_LinkClicked);
+            // 
+            // EditSelectedItem
+            // 
+            this.EditSelectedItem.AutoSize = true;
+            this.EditSelectedItem.Location = new System.Drawing.Point(144, 261);
+            this.EditSelectedItem.Name = "EditSelectedItem";
+            this.EditSelectedItem.Size = new System.Drawing.Size(83, 12);
+            this.EditSelectedItem.TabIndex = 23;
+            this.EditSelectedItem.TabStop = true;
+            this.EditSelectedItem.Text = "Edit Selected";
+            this.EditSelectedItem.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.EditSelectedItem_LinkClicked);
+            // 
             // MoveAlertDown
             // 
             this.MoveAlertDown.Font = new System.Drawing.Font("Wingdings 3", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.MoveAlertDown.Location = new System.Drawing.Point(381, 155);
+            this.MoveAlertDown.Location = new System.Drawing.Point(381, 143);
             this.MoveAlertDown.Name = "MoveAlertDown";
-            this.MoveAlertDown.Size = new System.Drawing.Size(23, 23);
+            this.MoveAlertDown.Size = new System.Drawing.Size(23, 21);
             this.MoveAlertDown.TabIndex = 22;
             this.MoveAlertDown.Text = "q";
             this.MoveAlertDown.UseVisualStyleBackColor = true;
@@ -1319,9 +1403,9 @@ namespace Taco
             // MoveAlertUp
             // 
             this.MoveAlertUp.Font = new System.Drawing.Font("Wingdings 3", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.MoveAlertUp.Location = new System.Drawing.Point(381, 126);
+            this.MoveAlertUp.Location = new System.Drawing.Point(381, 116);
             this.MoveAlertUp.Name = "MoveAlertUp";
-            this.MoveAlertUp.Size = new System.Drawing.Size(23, 23);
+            this.MoveAlertUp.Size = new System.Drawing.Size(23, 21);
             this.MoveAlertUp.TabIndex = 21;
             this.MoveAlertUp.Text = "p";
             this.MoveAlertUp.UseVisualStyleBackColor = true;
@@ -1331,9 +1415,9 @@ namespace Taco
             // 
             this.PlayAlertSound.AutoSize = true;
             this.PlayAlertSound.Enabled = false;
-            this.PlayAlertSound.Location = new System.Drawing.Point(3, 283);
+            this.PlayAlertSound.Location = new System.Drawing.Point(3, 261);
             this.PlayAlertSound.Name = "PlayAlertSound";
-            this.PlayAlertSound.Size = new System.Drawing.Size(72, 13);
+            this.PlayAlertSound.Size = new System.Drawing.Size(83, 12);
             this.PlayAlertSound.TabIndex = 20;
             this.PlayAlertSound.TabStop = true;
             this.PlayAlertSound.Text = "Play Selected";
@@ -1343,9 +1427,9 @@ namespace Taco
             // 
             this.RemoveSelectedItem.AutoSize = true;
             this.RemoveSelectedItem.Enabled = false;
-            this.RemoveSelectedItem.Location = new System.Drawing.Point(283, 283);
+            this.RemoveSelectedItem.Location = new System.Drawing.Point(283, 261);
             this.RemoveSelectedItem.Name = "RemoveSelectedItem";
-            this.RemoveSelectedItem.Size = new System.Drawing.Size(92, 13);
+            this.RemoveSelectedItem.Size = new System.Drawing.Size(95, 12);
             this.RemoveSelectedItem.TabIndex = 19;
             this.RemoveSelectedItem.TabStop = true;
             this.RemoveSelectedItem.Text = "Remove Selected";
@@ -1354,9 +1438,9 @@ namespace Taco
             // AlertList
             // 
             this.AlertList.FormattingEnabled = true;
-            this.AlertList.Location = new System.Drawing.Point(6, 19);
+            this.AlertList.Location = new System.Drawing.Point(6, 18);
             this.AlertList.Name = "AlertList";
-            this.AlertList.Size = new System.Drawing.Size(369, 259);
+            this.AlertList.Size = new System.Drawing.Size(369, 228);
             this.AlertList.TabIndex = 18;
             this.AlertList.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.AlertList_ItemCheck);
             this.AlertList.SelectedIndexChanged += new System.EventHandler(this.AlertList_SelectedIndexChanged);
@@ -1369,7 +1453,7 @@ namespace Taco
             this.ListManagementPage.Controls.Add(this.groupBox6);
             this.ListManagementPage.Location = new System.Drawing.Point(4, 22);
             this.ListManagementPage.Name = "ListManagementPage";
-            this.ListManagementPage.Size = new System.Drawing.Size(422, 616);
+            this.ListManagementPage.Size = new System.Drawing.Size(422, 561);
             this.ListManagementPage.TabIndex = 2;
             this.ListManagementPage.Text = "Lists";
             this.ListManagementPage.UseVisualStyleBackColor = true;
@@ -1380,21 +1464,49 @@ namespace Taco
             this.groupBox17.Controls.Add(this.RemoveLinkedCharacter);
             this.groupBox17.Controls.Add(this.CharacterList);
             this.groupBox17.Controls.Add(this.AddLinkedCharacter);
-            this.groupBox17.Location = new System.Drawing.Point(6, 256);
+            this.groupBox17.Location = new System.Drawing.Point(6, 236);
             this.groupBox17.Name = "groupBox17";
-            this.groupBox17.Size = new System.Drawing.Size(410, 244);
+            this.groupBox17.Size = new System.Drawing.Size(410, 225);
             this.groupBox17.TabIndex = 20;
             this.groupBox17.TabStop = false;
             this.groupBox17.Text = "Linked Characters";
             // 
+            // NewLinkedCharacter
+            // 
+            this.NewLinkedCharacter.Location = new System.Drawing.Point(7, 198);
+            this.NewLinkedCharacter.Name = "NewLinkedCharacter";
+            this.NewLinkedCharacter.Size = new System.Drawing.Size(134, 21);
+            this.NewLinkedCharacter.TabIndex = 3;
+            // 
+            // RemoveLinkedCharacter
+            // 
+            this.RemoveLinkedCharacter.Location = new System.Drawing.Point(176, 196);
+            this.RemoveLinkedCharacter.Name = "RemoveLinkedCharacter";
+            this.RemoveLinkedCharacter.Size = new System.Drawing.Size(23, 21);
+            this.RemoveLinkedCharacter.TabIndex = 2;
+            this.RemoveLinkedCharacter.Text = "-";
+            this.RemoveLinkedCharacter.UseVisualStyleBackColor = true;
+            this.RemoveLinkedCharacter.Click += new System.EventHandler(this.RemoveLinkedCharacter_Click);
+            // 
             // CharacterList
             // 
             this.CharacterList.FormattingEnabled = true;
-            this.CharacterList.Location = new System.Drawing.Point(7, 20);
+            this.CharacterList.ItemHeight = 12;
+            this.CharacterList.Location = new System.Drawing.Point(7, 18);
             this.CharacterList.Name = "CharacterList";
-            this.CharacterList.Size = new System.Drawing.Size(192, 186);
+            this.CharacterList.Size = new System.Drawing.Size(192, 172);
             this.CharacterList.Sorted = true;
             this.CharacterList.TabIndex = 0;
+            // 
+            // AddLinkedCharacter
+            // 
+            this.AddLinkedCharacter.Location = new System.Drawing.Point(147, 196);
+            this.AddLinkedCharacter.Name = "AddLinkedCharacter";
+            this.AddLinkedCharacter.Size = new System.Drawing.Size(23, 21);
+            this.AddLinkedCharacter.TabIndex = 1;
+            this.AddLinkedCharacter.Text = "+";
+            this.AddLinkedCharacter.UseVisualStyleBackColor = true;
+            this.AddLinkedCharacter.Click += new System.EventHandler(this.AddLinkedCharacter_Click);
             // 
             // groupBox7
             // 
@@ -1404,7 +1516,7 @@ namespace Taco
             this.groupBox7.Controls.Add(this.AddIgnoreSystem);
             this.groupBox7.Location = new System.Drawing.Point(211, 6);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(205, 244);
+            this.groupBox7.Size = new System.Drawing.Size(205, 225);
             this.groupBox7.TabIndex = 19;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Ignore Systems";
@@ -1412,16 +1524,17 @@ namespace Taco
             // IgnoreSystemList
             // 
             this.IgnoreSystemList.FormattingEnabled = true;
-            this.IgnoreSystemList.Location = new System.Drawing.Point(7, 20);
+            this.IgnoreSystemList.ItemHeight = 12;
+            this.IgnoreSystemList.Location = new System.Drawing.Point(7, 18);
             this.IgnoreSystemList.Name = "IgnoreSystemList";
-            this.IgnoreSystemList.Size = new System.Drawing.Size(192, 186);
+            this.IgnoreSystemList.Size = new System.Drawing.Size(192, 172);
             this.IgnoreSystemList.TabIndex = 25;
             // 
             // RemoveIgnoreSystem
             // 
-            this.RemoveIgnoreSystem.Location = new System.Drawing.Point(176, 212);
+            this.RemoveIgnoreSystem.Location = new System.Drawing.Point(176, 196);
             this.RemoveIgnoreSystem.Name = "RemoveIgnoreSystem";
-            this.RemoveIgnoreSystem.Size = new System.Drawing.Size(23, 23);
+            this.RemoveIgnoreSystem.Size = new System.Drawing.Size(23, 21);
             this.RemoveIgnoreSystem.TabIndex = 23;
             this.RemoveIgnoreSystem.Text = "-";
             this.RemoveIgnoreSystem.UseVisualStyleBackColor = true;
@@ -1430,17 +1543,17 @@ namespace Taco
             // NewIgnoreSystem
             // 
             this.NewIgnoreSystem.FormattingEnabled = true;
-            this.NewIgnoreSystem.Location = new System.Drawing.Point(7, 214);
+            this.NewIgnoreSystem.Location = new System.Drawing.Point(7, 198);
             this.NewIgnoreSystem.Name = "NewIgnoreSystem";
-            this.NewIgnoreSystem.Size = new System.Drawing.Size(134, 21);
+            this.NewIgnoreSystem.Size = new System.Drawing.Size(134, 20);
             this.NewIgnoreSystem.TabIndex = 24;
             this.NewIgnoreSystem.Leave += new System.EventHandler(this.NewIgnoreSystem_Leave);
             // 
             // AddIgnoreSystem
             // 
-            this.AddIgnoreSystem.Location = new System.Drawing.Point(147, 212);
+            this.AddIgnoreSystem.Location = new System.Drawing.Point(147, 196);
             this.AddIgnoreSystem.Name = "AddIgnoreSystem";
-            this.AddIgnoreSystem.Size = new System.Drawing.Size(23, 23);
+            this.AddIgnoreSystem.Size = new System.Drawing.Size(23, 21);
             this.AddIgnoreSystem.TabIndex = 22;
             this.AddIgnoreSystem.Text = "+";
             this.AddIgnoreSystem.UseVisualStyleBackColor = true;
@@ -1454,16 +1567,25 @@ namespace Taco
             this.groupBox6.Controls.Add(this.AddIgnoreText);
             this.groupBox6.Location = new System.Drawing.Point(6, 6);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(205, 244);
+            this.groupBox6.Size = new System.Drawing.Size(205, 225);
             this.groupBox6.TabIndex = 18;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Ignore Text";
             // 
+            // IgnoreTextList
+            // 
+            this.IgnoreTextList.FormattingEnabled = true;
+            this.IgnoreTextList.ItemHeight = 12;
+            this.IgnoreTextList.Location = new System.Drawing.Point(7, 18);
+            this.IgnoreTextList.Name = "IgnoreTextList";
+            this.IgnoreTextList.Size = new System.Drawing.Size(192, 172);
+            this.IgnoreTextList.TabIndex = 0;
+            // 
             // RemoveIgnoreText
             // 
-            this.RemoveIgnoreText.Location = new System.Drawing.Point(176, 212);
+            this.RemoveIgnoreText.Location = new System.Drawing.Point(176, 196);
             this.RemoveIgnoreText.Name = "RemoveIgnoreText";
-            this.RemoveIgnoreText.Size = new System.Drawing.Size(23, 23);
+            this.RemoveIgnoreText.Size = new System.Drawing.Size(23, 21);
             this.RemoveIgnoreText.TabIndex = 21;
             this.RemoveIgnoreText.Text = "-";
             this.RemoveIgnoreText.UseVisualStyleBackColor = true;
@@ -1471,24 +1593,16 @@ namespace Taco
             // 
             // NewIgnoreText
             // 
-            this.NewIgnoreText.Location = new System.Drawing.Point(7, 214);
+            this.NewIgnoreText.Location = new System.Drawing.Point(7, 198);
             this.NewIgnoreText.Name = "NewIgnoreText";
-            this.NewIgnoreText.Size = new System.Drawing.Size(134, 20);
+            this.NewIgnoreText.Size = new System.Drawing.Size(134, 21);
             this.NewIgnoreText.TabIndex = 25;
-            // 
-            // IgnoreTextList
-            // 
-            this.IgnoreTextList.FormattingEnabled = true;
-            this.IgnoreTextList.Location = new System.Drawing.Point(7, 20);
-            this.IgnoreTextList.Name = "IgnoreTextList";
-            this.IgnoreTextList.Size = new System.Drawing.Size(192, 186);
-            this.IgnoreTextList.TabIndex = 0;
             // 
             // AddIgnoreText
             // 
-            this.AddIgnoreText.Location = new System.Drawing.Point(147, 212);
+            this.AddIgnoreText.Location = new System.Drawing.Point(147, 196);
             this.AddIgnoreText.Name = "AddIgnoreText";
-            this.AddIgnoreText.Size = new System.Drawing.Size(23, 23);
+            this.AddIgnoreText.Size = new System.Drawing.Size(23, 21);
             this.AddIgnoreText.TabIndex = 20;
             this.AddIgnoreText.Text = "+";
             this.AddIgnoreText.UseVisualStyleBackColor = true;
@@ -1509,7 +1623,7 @@ namespace Taco
             this.MiscSettingsPage.Controls.Add(this.groupBox4);
             this.MiscSettingsPage.Location = new System.Drawing.Point(4, 22);
             this.MiscSettingsPage.Name = "MiscSettingsPage";
-            this.MiscSettingsPage.Size = new System.Drawing.Size(422, 616);
+            this.MiscSettingsPage.Size = new System.Drawing.Size(422, 561);
             this.MiscSettingsPage.TabIndex = 3;
             this.MiscSettingsPage.Text = "Misc Settings";
             this.MiscSettingsPage.UseVisualStyleBackColor = true;
@@ -1517,9 +1631,9 @@ namespace Taco
             // CrashException
             // 
             this.CrashException.Enabled = false;
-            this.CrashException.Location = new System.Drawing.Point(146, 499);
+            this.CrashException.Location = new System.Drawing.Point(146, 461);
             this.CrashException.Name = "CrashException";
-            this.CrashException.Size = new System.Drawing.Size(130, 23);
+            this.CrashException.Size = new System.Drawing.Size(130, 21);
             this.CrashException.TabIndex = 19;
             this.CrashException.Text = "Crash Exception";
             this.CrashException.UseVisualStyleBackColor = true;
@@ -1529,9 +1643,9 @@ namespace Taco
             // CrashRecursive
             // 
             this.CrashRecursive.Enabled = false;
-            this.CrashRecursive.Location = new System.Drawing.Point(286, 499);
+            this.CrashRecursive.Location = new System.Drawing.Point(286, 461);
             this.CrashRecursive.Name = "CrashRecursive";
-            this.CrashRecursive.Size = new System.Drawing.Size(130, 23);
+            this.CrashRecursive.Size = new System.Drawing.Size(130, 21);
             this.CrashRecursive.TabIndex = 2;
             this.CrashRecursive.Text = "Crash Recursive";
             this.CrashRecursive.UseVisualStyleBackColor = true;
@@ -1542,9 +1656,9 @@ namespace Taco
             // 
             this.groupBox12.Controls.Add(this.PlayAnomalyWatcherSoundPreview);
             this.groupBox12.Controls.Add(this.AnomalyWatcherSound);
-            this.groupBox12.Location = new System.Drawing.Point(6, 383);
+            this.groupBox12.Location = new System.Drawing.Point(6, 354);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(410, 52);
+            this.groupBox12.Size = new System.Drawing.Size(410, 48);
             this.groupBox12.TabIndex = 18;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "Anomaly Monitor Alert Sound";
@@ -1552,9 +1666,9 @@ namespace Taco
             // PlayAnomalyWatcherSoundPreview
             // 
             this.PlayAnomalyWatcherSoundPreview.AutoSize = true;
-            this.PlayAnomalyWatcherSoundPreview.Location = new System.Drawing.Point(6, 22);
+            this.PlayAnomalyWatcherSoundPreview.Location = new System.Drawing.Point(6, 20);
             this.PlayAnomalyWatcherSoundPreview.Name = "PlayAnomalyWatcherSoundPreview";
-            this.PlayAnomalyWatcherSoundPreview.Size = new System.Drawing.Size(27, 13);
+            this.PlayAnomalyWatcherSoundPreview.Size = new System.Drawing.Size(29, 12);
             this.PlayAnomalyWatcherSoundPreview.TabIndex = 1;
             this.PlayAnomalyWatcherSoundPreview.TabStop = true;
             this.PlayAnomalyWatcherSoundPreview.Text = "Play";
@@ -1564,9 +1678,9 @@ namespace Taco
             // 
             this.AnomalyWatcherSound.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.AnomalyWatcherSound.FormattingEnabled = true;
-            this.AnomalyWatcherSound.Location = new System.Drawing.Point(39, 19);
+            this.AnomalyWatcherSound.Location = new System.Drawing.Point(39, 18);
             this.AnomalyWatcherSound.Name = "AnomalyWatcherSound";
-            this.AnomalyWatcherSound.Size = new System.Drawing.Size(364, 21);
+            this.AnomalyWatcherSound.Size = new System.Drawing.Size(364, 20);
             this.AnomalyWatcherSound.TabIndex = 0;
             this.AnomalyWatcherSound.SelectedIndexChanged += new System.EventHandler(this.AnomalyWatcherSound_SelectedIndexChanged);
             this.AnomalyWatcherSound.TextChanged += new System.EventHandler(this.AnomalyWatcherSound_TextChanged);
@@ -1576,9 +1690,9 @@ namespace Taco
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(17, 554);
+            this.label9.Location = new System.Drawing.Point(17, 505);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(389, 56);
+            this.label9.Size = new System.Drawing.Size(389, 52);
             this.label9.TabIndex = 18;
             this.label9.Text = "T.A.C.O. is 100% free, and always will be.  However, if you use T.A.C.O. on a reg" +
     "ular basis, please consider a donation of ISK to McNubblet. Any donations will b" +
@@ -1589,9 +1703,9 @@ namespace Taco
             // 
             this.groupBox8.Controls.Add(this.DisplayOpenFileAlerts);
             this.groupBox8.Controls.Add(this.DisplayNewFileAlerts);
-            this.groupBox8.Location = new System.Drawing.Point(6, 249);
+            this.groupBox8.Location = new System.Drawing.Point(6, 230);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(410, 47);
+            this.groupBox8.Size = new System.Drawing.Size(410, 43);
             this.groupBox8.TabIndex = 17;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Miscellaneous Settings";
@@ -1599,9 +1713,9 @@ namespace Taco
             // DisplayOpenFileAlerts
             // 
             this.DisplayOpenFileAlerts.AutoSize = true;
-            this.DisplayOpenFileAlerts.Location = new System.Drawing.Point(216, 19);
+            this.DisplayOpenFileAlerts.Location = new System.Drawing.Point(216, 18);
             this.DisplayOpenFileAlerts.Name = "DisplayOpenFileAlerts";
-            this.DisplayOpenFileAlerts.Size = new System.Drawing.Size(146, 17);
+            this.DisplayOpenFileAlerts.Size = new System.Drawing.Size(180, 16);
             this.DisplayOpenFileAlerts.TabIndex = 1;
             this.DisplayOpenFileAlerts.Text = "Display \"Open File\" alerts";
             this.DisplayOpenFileAlerts.UseVisualStyleBackColor = true;
@@ -1610,9 +1724,9 @@ namespace Taco
             // DisplayNewFileAlerts
             // 
             this.DisplayNewFileAlerts.AutoSize = true;
-            this.DisplayNewFileAlerts.Location = new System.Drawing.Point(11, 20);
+            this.DisplayNewFileAlerts.Location = new System.Drawing.Point(11, 18);
             this.DisplayNewFileAlerts.Name = "DisplayNewFileAlerts";
-            this.DisplayNewFileAlerts.Size = new System.Drawing.Size(142, 17);
+            this.DisplayNewFileAlerts.Size = new System.Drawing.Size(174, 16);
             this.DisplayNewFileAlerts.TabIndex = 0;
             this.DisplayNewFileAlerts.Text = "Display \"New File\" alerts";
             this.DisplayNewFileAlerts.UseVisualStyleBackColor = true;
@@ -1620,9 +1734,9 @@ namespace Taco
             // 
             // ClearSelectedSystems
             // 
-            this.ClearSelectedSystems.Location = new System.Drawing.Point(6, 441);
+            this.ClearSelectedSystems.Location = new System.Drawing.Point(6, 407);
             this.ClearSelectedSystems.Name = "ClearSelectedSystems";
-            this.ClearSelectedSystems.Size = new System.Drawing.Size(410, 23);
+            this.ClearSelectedSystems.Size = new System.Drawing.Size(410, 21);
             this.ClearSelectedSystems.TabIndex = 16;
             this.ClearSelectedSystems.Text = "Clear Selected Systems";
             this.ClearSelectedSystems.UseVisualStyleBackColor = true;
@@ -1646,9 +1760,9 @@ namespace Taco
             this.groupBox5.Controls.Add(this.DisplayCharacterNames);
             this.groupBox5.Controls.Add(this.CentreOnCharacter);
             this.groupBox5.Controls.Add(this.CameraFollowCharacter);
-            this.groupBox5.Location = new System.Drawing.Point(6, 100);
+            this.groupBox5.Location = new System.Drawing.Point(6, 92);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(410, 143);
+            this.groupBox5.Size = new System.Drawing.Size(410, 132);
             this.groupBox5.TabIndex = 12;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Map Settings";
@@ -1656,33 +1770,33 @@ namespace Taco
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(233, 67);
+            this.label29.Location = new System.Drawing.Point(233, 62);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(105, 13);
+            this.label29.Size = new System.Drawing.Size(137, 12);
             this.label29.TabIndex = 17;
             this.label29.Text = "Max alerts to display:";
             // 
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(142, 67);
+            this.label28.Location = new System.Drawing.Point(142, 62);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(28, 13);
+            this.label28.Size = new System.Drawing.Size(29, 12);
             this.label28.TabIndex = 16;
             this.label28.Text = "mins";
             // 
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(24, 67);
+            this.label27.Location = new System.Drawing.Point(24, 62);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(76, 13);
+            this.label27.Size = new System.Drawing.Size(89, 12);
             this.label27.TabIndex = 15;
             this.label27.Text = "Max Alert Age:";
             // 
             // MaxAlerts
             // 
-            this.MaxAlerts.Location = new System.Drawing.Point(338, 65);
+            this.MaxAlerts.Location = new System.Drawing.Point(338, 60);
             this.MaxAlerts.Maximum = new decimal(new int[] {
             50,
             0,
@@ -1694,7 +1808,7 @@ namespace Taco
             0,
             0});
             this.MaxAlerts.Name = "MaxAlerts";
-            this.MaxAlerts.Size = new System.Drawing.Size(35, 20);
+            this.MaxAlerts.Size = new System.Drawing.Size(35, 21);
             this.MaxAlerts.TabIndex = 14;
             this.MaxAlerts.Value = new decimal(new int[] {
             15,
@@ -1705,14 +1819,14 @@ namespace Taco
             // 
             // MaxAlertAge
             // 
-            this.MaxAlertAge.Location = new System.Drawing.Point(101, 65);
+            this.MaxAlertAge.Location = new System.Drawing.Point(101, 60);
             this.MaxAlertAge.Maximum = new decimal(new int[] {
             99,
             0,
             0,
             0});
             this.MaxAlertAge.Name = "MaxAlertAge";
-            this.MaxAlertAge.Size = new System.Drawing.Size(35, 20);
+            this.MaxAlertAge.Size = new System.Drawing.Size(35, 21);
             this.MaxAlertAge.TabIndex = 13;
             this.HintToolTip.SetToolTip(this.MaxAlertAge, "Set to 0 for no limit");
             this.MaxAlertAge.Value = new decimal(new int[] {
@@ -1725,18 +1839,18 @@ namespace Taco
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(160, 43);
+            this.label26.Location = new System.Drawing.Point(160, 40);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(10, 13);
+            this.label26.Size = new System.Drawing.Size(11, 12);
             this.label26.TabIndex = 12;
             this.label26.Text = ")";
             // 
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(106, 43);
+            this.label25.Location = new System.Drawing.Point(106, 40);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(10, 13);
+            this.label25.Size = new System.Drawing.Size(11, 12);
             this.label25.TabIndex = 11;
             this.label25.Text = "(";
             // 
@@ -1745,9 +1859,9 @@ namespace Taco
             this.ShowAlertAgeSecs.AutoSize = true;
             this.ShowAlertAgeSecs.Checked = true;
             this.ShowAlertAgeSecs.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ShowAlertAgeSecs.Location = new System.Drawing.Point(119, 42);
+            this.ShowAlertAgeSecs.Location = new System.Drawing.Point(119, 39);
             this.ShowAlertAgeSecs.Name = "ShowAlertAgeSecs";
-            this.ShowAlertAgeSecs.Size = new System.Drawing.Size(48, 17);
+            this.ShowAlertAgeSecs.Size = new System.Drawing.Size(48, 16);
             this.ShowAlertAgeSecs.TabIndex = 10;
             this.ShowAlertAgeSecs.Text = "secs";
             this.ShowAlertAgeSecs.UseVisualStyleBackColor = true;
@@ -1756,9 +1870,9 @@ namespace Taco
             // ShowReportCount
             // 
             this.ShowReportCount.AutoSize = true;
-            this.ShowReportCount.Location = new System.Drawing.Point(216, 42);
+            this.ShowReportCount.Location = new System.Drawing.Point(216, 39);
             this.ShowReportCount.Name = "ShowReportCount";
-            this.ShowReportCount.Size = new System.Drawing.Size(156, 17);
+            this.ShowReportCount.Size = new System.Drawing.Size(168, 16);
             this.ShowReportCount.TabIndex = 9;
             this.ShowReportCount.Text = "Show System Report Count";
             this.HintToolTip.SetToolTip(this.ShowReportCount, "Show number of times a system has\r\nbeen reporting since application startup");
@@ -1770,9 +1884,9 @@ namespace Taco
             this.ShowAlertAge.AutoSize = true;
             this.ShowAlertAge.Checked = true;
             this.ShowAlertAge.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ShowAlertAge.Location = new System.Drawing.Point(8, 42);
+            this.ShowAlertAge.Location = new System.Drawing.Point(8, 39);
             this.ShowAlertAge.Name = "ShowAlertAge";
-            this.ShowAlertAge.Size = new System.Drawing.Size(99, 17);
+            this.ShowAlertAge.Size = new System.Drawing.Size(108, 16);
             this.ShowAlertAge.TabIndex = 8;
             this.ShowAlertAge.Text = "Show Alert Age";
             this.ShowAlertAge.UseVisualStyleBackColor = true;
@@ -1781,9 +1895,9 @@ namespace Taco
             // ShowCharacterLocations
             // 
             this.ShowCharacterLocations.AutoSize = true;
-            this.ShowCharacterLocations.Location = new System.Drawing.Point(8, 19);
+            this.ShowCharacterLocations.Location = new System.Drawing.Point(8, 18);
             this.ShowCharacterLocations.Name = "ShowCharacterLocations";
-            this.ShowCharacterLocations.Size = new System.Drawing.Size(151, 17);
+            this.ShowCharacterLocations.Size = new System.Drawing.Size(168, 16);
             this.ShowCharacterLocations.TabIndex = 7;
             this.ShowCharacterLocations.Text = "Show Character Locations";
             this.ShowCharacterLocations.UseVisualStyleBackColor = true;
@@ -1795,18 +1909,18 @@ namespace Taco
             this.MapRangeFrom.FormattingEnabled = true;
             this.MapRangeFrom.Items.AddRange(new object[] {
             "Home System"});
-            this.MapRangeFrom.Location = new System.Drawing.Point(216, 112);
+            this.MapRangeFrom.Location = new System.Drawing.Point(216, 103);
             this.MapRangeFrom.Name = "MapRangeFrom";
-            this.MapRangeFrom.Size = new System.Drawing.Size(179, 21);
+            this.MapRangeFrom.Size = new System.Drawing.Size(179, 20);
             this.MapRangeFrom.TabIndex = 6;
             this.MapRangeFrom.SelectedIndexChanged += new System.EventHandler(this.MapRangeFrom_SelectedIndexChanged);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(213, 92);
+            this.label10.Location = new System.Drawing.Point(213, 85);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(152, 13);
+            this.label10.Size = new System.Drawing.Size(185, 12);
             this.label10.TabIndex = 5;
             this.label10.Text = "Jump range on map relative to:";
             // 
@@ -1814,9 +1928,9 @@ namespace Taco
             // 
             this.DisplayCharacterNames.AutoSize = true;
             this.DisplayCharacterNames.Enabled = false;
-            this.DisplayCharacterNames.Location = new System.Drawing.Point(216, 19);
+            this.DisplayCharacterNames.Location = new System.Drawing.Point(216, 18);
             this.DisplayCharacterNames.Name = "DisplayCharacterNames";
-            this.DisplayCharacterNames.Size = new System.Drawing.Size(145, 17);
+            this.DisplayCharacterNames.Size = new System.Drawing.Size(162, 16);
             this.DisplayCharacterNames.TabIndex = 4;
             this.DisplayCharacterNames.Text = "Display Character Names";
             this.DisplayCharacterNames.UseVisualStyleBackColor = true;
@@ -1827,18 +1941,18 @@ namespace Taco
             this.CentreOnCharacter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CentreOnCharacter.Enabled = false;
             this.CentreOnCharacter.FormattingEnabled = true;
-            this.CentreOnCharacter.Location = new System.Drawing.Point(25, 112);
+            this.CentreOnCharacter.Location = new System.Drawing.Point(25, 103);
             this.CentreOnCharacter.Name = "CentreOnCharacter";
-            this.CentreOnCharacter.Size = new System.Drawing.Size(174, 21);
+            this.CentreOnCharacter.Size = new System.Drawing.Size(174, 20);
             this.CentreOnCharacter.TabIndex = 3;
             this.CentreOnCharacter.SelectedIndexChanged += new System.EventHandler(this.CentreOnCharacter_SelectedIndexChanged);
             // 
             // CameraFollowCharacter
             // 
             this.CameraFollowCharacter.AutoSize = true;
-            this.CameraFollowCharacter.Location = new System.Drawing.Point(8, 91);
+            this.CameraFollowCharacter.Location = new System.Drawing.Point(8, 84);
             this.CameraFollowCharacter.Name = "CameraFollowCharacter";
-            this.CameraFollowCharacter.Size = new System.Drawing.Size(194, 17);
+            this.CameraFollowCharacter.Size = new System.Drawing.Size(222, 16);
             this.CameraFollowCharacter.TabIndex = 2;
             this.CameraFollowCharacter.Text = "Keep camera centred on character:";
             this.CameraFollowCharacter.UseVisualStyleBackColor = true;
@@ -1855,7 +1969,7 @@ namespace Taco
             this.groupBox2.Controls.Add(this.PreserveLookAt);
             this.groupBox2.Location = new System.Drawing.Point(6, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(410, 88);
+            this.groupBox2.Size = new System.Drawing.Size(410, 81);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Window Settings (Preserve between sessions)";
@@ -1863,9 +1977,9 @@ namespace Taco
             // PreserveSelectedSystems
             // 
             this.PreserveSelectedSystems.AutoSize = true;
-            this.PreserveSelectedSystems.Location = new System.Drawing.Point(288, 42);
+            this.PreserveSelectedSystems.Location = new System.Drawing.Point(288, 39);
             this.PreserveSelectedSystems.Name = "PreserveSelectedSystems";
-            this.PreserveSelectedSystems.Size = new System.Drawing.Size(110, 17);
+            this.PreserveSelectedSystems.Size = new System.Drawing.Size(120, 16);
             this.PreserveSelectedSystems.TabIndex = 4;
             this.PreserveSelectedSystems.Text = "Selected Systems";
             this.PreserveSelectedSystems.UseVisualStyleBackColor = true;
@@ -1874,9 +1988,9 @@ namespace Taco
             // PreserveFullScreenStatus
             // 
             this.PreserveFullScreenStatus.AutoSize = true;
-            this.PreserveFullScreenStatus.Location = new System.Drawing.Point(288, 19);
+            this.PreserveFullScreenStatus.Location = new System.Drawing.Point(288, 18);
             this.PreserveFullScreenStatus.Name = "PreserveFullScreenStatus";
-            this.PreserveFullScreenStatus.Size = new System.Drawing.Size(112, 17);
+            this.PreserveFullScreenStatus.Size = new System.Drawing.Size(132, 16);
             this.PreserveFullScreenStatus.TabIndex = 3;
             this.PreserveFullScreenStatus.Text = "Full Screen Status";
             this.PreserveFullScreenStatus.UseVisualStyleBackColor = true;
@@ -1885,9 +1999,9 @@ namespace Taco
             // PreserveHomeSystem
             // 
             this.PreserveHomeSystem.AutoSize = true;
-            this.PreserveHomeSystem.Location = new System.Drawing.Point(11, 65);
+            this.PreserveHomeSystem.Location = new System.Drawing.Point(11, 60);
             this.PreserveHomeSystem.Name = "PreserveHomeSystem";
-            this.PreserveHomeSystem.Size = new System.Drawing.Size(91, 17);
+            this.PreserveHomeSystem.Size = new System.Drawing.Size(90, 16);
             this.PreserveHomeSystem.TabIndex = 2;
             this.PreserveHomeSystem.Text = "Home System";
             this.PreserveHomeSystem.UseVisualStyleBackColor = true;
@@ -1896,9 +2010,9 @@ namespace Taco
             // PreserveWindowPosition
             // 
             this.PreserveWindowPosition.AutoSize = true;
-            this.PreserveWindowPosition.Location = new System.Drawing.Point(152, 19);
+            this.PreserveWindowPosition.Location = new System.Drawing.Point(152, 18);
             this.PreserveWindowPosition.Name = "PreserveWindowPosition";
-            this.PreserveWindowPosition.Size = new System.Drawing.Size(105, 17);
+            this.PreserveWindowPosition.Size = new System.Drawing.Size(114, 16);
             this.PreserveWindowPosition.TabIndex = 1;
             this.PreserveWindowPosition.Text = "Window Position";
             this.PreserveWindowPosition.UseVisualStyleBackColor = true;
@@ -1907,9 +2021,9 @@ namespace Taco
             // PreserveWindowSize
             // 
             this.PreserveWindowSize.AutoSize = true;
-            this.PreserveWindowSize.Location = new System.Drawing.Point(11, 19);
+            this.PreserveWindowSize.Location = new System.Drawing.Point(11, 18);
             this.PreserveWindowSize.Name = "PreserveWindowSize";
-            this.PreserveWindowSize.Size = new System.Drawing.Size(88, 17);
+            this.PreserveWindowSize.Size = new System.Drawing.Size(90, 16);
             this.PreserveWindowSize.TabIndex = 0;
             this.PreserveWindowSize.Text = "Window Size";
             this.PreserveWindowSize.UseVisualStyleBackColor = true;
@@ -1918,9 +2032,9 @@ namespace Taco
             // PreserveCameraDistance
             // 
             this.PreserveCameraDistance.AutoSize = true;
-            this.PreserveCameraDistance.Location = new System.Drawing.Point(152, 42);
+            this.PreserveCameraDistance.Location = new System.Drawing.Point(152, 39);
             this.PreserveCameraDistance.Name = "PreserveCameraDistance";
-            this.PreserveCameraDistance.Size = new System.Drawing.Size(132, 17);
+            this.PreserveCameraDistance.Size = new System.Drawing.Size(144, 16);
             this.PreserveCameraDistance.TabIndex = 1;
             this.PreserveCameraDistance.Text = "Save camera distance";
             this.PreserveCameraDistance.UseVisualStyleBackColor = true;
@@ -1929,9 +2043,9 @@ namespace Taco
             // PreserveLookAt
             // 
             this.PreserveLookAt.AutoSize = true;
-            this.PreserveLookAt.Location = new System.Drawing.Point(11, 42);
+            this.PreserveLookAt.Location = new System.Drawing.Point(11, 39);
             this.PreserveLookAt.Name = "PreserveLookAt";
-            this.PreserveLookAt.Size = new System.Drawing.Size(128, 17);
+            this.PreserveLookAt.Size = new System.Drawing.Size(144, 16);
             this.PreserveLookAt.TabIndex = 0;
             this.PreserveLookAt.Text = "Save camera position";
             this.PreserveLookAt.UseVisualStyleBackColor = true;
@@ -1942,9 +2056,9 @@ namespace Taco
             this.groupBox4.Controls.Add(this.ChooseLogPath);
             this.groupBox4.Controls.Add(this.OverrideLogPath);
             this.groupBox4.Controls.Add(this.LogPath);
-            this.groupBox4.Location = new System.Drawing.Point(6, 302);
+            this.groupBox4.Location = new System.Drawing.Point(6, 279);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(410, 75);
+            this.groupBox4.Size = new System.Drawing.Size(410, 69);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Log Directory";
@@ -1952,9 +2066,9 @@ namespace Taco
             // ChooseLogPath
             // 
             this.ChooseLogPath.Enabled = false;
-            this.ChooseLogPath.Location = new System.Drawing.Point(329, 42);
+            this.ChooseLogPath.Location = new System.Drawing.Point(329, 39);
             this.ChooseLogPath.Name = "ChooseLogPath";
-            this.ChooseLogPath.Size = new System.Drawing.Size(75, 23);
+            this.ChooseLogPath.Size = new System.Drawing.Size(75, 21);
             this.ChooseLogPath.TabIndex = 2;
             this.ChooseLogPath.Text = "Change";
             this.ChooseLogPath.UseVisualStyleBackColor = true;
@@ -1963,9 +2077,9 @@ namespace Taco
             // OverrideLogPath
             // 
             this.OverrideLogPath.AutoSize = true;
-            this.OverrideLogPath.Location = new System.Drawing.Point(11, 46);
+            this.OverrideLogPath.Location = new System.Drawing.Point(11, 42);
             this.OverrideLogPath.Name = "OverrideLogPath";
-            this.OverrideLogPath.Size = new System.Drawing.Size(159, 17);
+            this.OverrideLogPath.Size = new System.Drawing.Size(198, 16);
             this.OverrideLogPath.TabIndex = 1;
             this.OverrideLogPath.Text = "Manually select log directory";
             this.OverrideLogPath.UseVisualStyleBackColor = true;
@@ -1974,10 +2088,10 @@ namespace Taco
             // LogPath
             // 
             this.LogPath.Enabled = false;
-            this.LogPath.Location = new System.Drawing.Point(11, 19);
+            this.LogPath.Location = new System.Drawing.Point(11, 18);
             this.LogPath.Name = "LogPath";
             this.LogPath.ReadOnly = true;
-            this.LogPath.Size = new System.Drawing.Size(393, 20);
+            this.LogPath.Size = new System.Drawing.Size(393, 21);
             this.LogPath.TabIndex = 0;
             // 
             // InfoPage
@@ -1992,7 +2106,7 @@ namespace Taco
             this.InfoPage.Controls.Add(this.groupBox13);
             this.InfoPage.Location = new System.Drawing.Point(4, 22);
             this.InfoPage.Name = "InfoPage";
-            this.InfoPage.Size = new System.Drawing.Size(422, 616);
+            this.InfoPage.Size = new System.Drawing.Size(422, 561);
             this.InfoPage.TabIndex = 4;
             this.InfoPage.Text = "About";
             this.InfoPage.UseVisualStyleBackColor = true;
@@ -2001,9 +2115,9 @@ namespace Taco
             // 
             this.groupBox16.Controls.Add(this.label24);
             this.groupBox16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox16.Location = new System.Drawing.Point(5, 296);
+            this.groupBox16.Location = new System.Drawing.Point(5, 273);
             this.groupBox16.Name = "groupBox16";
-            this.groupBox16.Size = new System.Drawing.Size(410, 61);
+            this.groupBox16.Size = new System.Drawing.Size(410, 56);
             this.groupBox16.TabIndex = 7;
             this.groupBox16.TabStop = false;
             this.groupBox16.Text = "Anomaly Monitor";
@@ -2011,9 +2125,9 @@ namespace Taco
             // label24
             // 
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(6, 16);
+            this.label24.Location = new System.Drawing.Point(6, 15);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(398, 44);
+            this.label24.Size = new System.Drawing.Size(398, 41);
             this.label24.TabIndex = 0;
             this.label24.Text = resources.GetString("label24.Text");
             // 
@@ -2021,9 +2135,9 @@ namespace Taco
             // 
             this.groupBox15.Controls.Add(this.label23);
             this.groupBox15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox15.Location = new System.Drawing.Point(5, 535);
+            this.groupBox15.Location = new System.Drawing.Point(5, 494);
             this.groupBox15.Name = "groupBox15";
-            this.groupBox15.Size = new System.Drawing.Size(410, 78);
+            this.groupBox15.Size = new System.Drawing.Size(410, 72);
             this.groupBox15.TabIndex = 6;
             this.groupBox15.TabStop = false;
             this.groupBox15.Text = "Acknowledgements";
@@ -2031,9 +2145,9 @@ namespace Taco
             // label23
             // 
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(2, 16);
+            this.label23.Location = new System.Drawing.Point(2, 15);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(402, 58);
+            this.label23.Size = new System.Drawing.Size(402, 54);
             this.label23.TabIndex = 0;
             this.label23.Text = "Thanks to everyone\'s who has helped out in any way.\r\n\r\nExtra thanks to the 10 peo" +
     "ple who have thrown some ISK my way, it\'s much appreciated.";
@@ -2042,9 +2156,9 @@ namespace Taco
             // 
             this.groupBox14.Controls.Add(this.label22);
             this.groupBox14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox14.Location = new System.Drawing.Point(5, 363);
+            this.groupBox14.Location = new System.Drawing.Point(5, 335);
             this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(410, 166);
+            this.groupBox14.Size = new System.Drawing.Size(410, 153);
             this.groupBox14.TabIndex = 5;
             this.groupBox14.TabStop = false;
             this.groupBox14.Text = "Beta Software";
@@ -2052,18 +2166,18 @@ namespace Taco
             // label22
             // 
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(6, 16);
+            this.label22.Location = new System.Drawing.Point(6, 15);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(398, 147);
+            this.label22.Size = new System.Drawing.Size(398, 136);
             this.label22.TabIndex = 0;
             this.label22.Text = resources.GetString("label22.Text");
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Taco.Properties.Resources.AngryTaco;
-            this.pictureBox1.Location = new System.Drawing.Point(9, 11);
+            this.pictureBox1.Location = new System.Drawing.Point(9, 10);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(96, 81);
+            this.pictureBox1.Size = new System.Drawing.Size(96, 75);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
@@ -2071,18 +2185,18 @@ namespace Taco
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(154, 79);
+            this.label21.Location = new System.Drawing.Point(154, 73);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(112, 13);
+            this.label21.Size = new System.Drawing.Size(125, 12);
             this.label21.TabIndex = 3;
             this.label21.Text = "v0.7.0b by McNubblet";
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(114, 62);
+            this.label20.Location = new System.Drawing.Point(114, 57);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(192, 13);
+            this.label20.Size = new System.Drawing.Size(227, 12);
             this.label20.TabIndex = 2;
             this.label20.Text = "Tactical Alerting Combatant Overwatch";
             // 
@@ -2090,7 +2204,7 @@ namespace Taco
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(135, 11);
+            this.label19.Location = new System.Drawing.Point(135, 10);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(151, 47);
             this.label19.TabIndex = 1;
@@ -2112,18 +2226,29 @@ namespace Taco
             this.groupBox13.Controls.Add(this.label4);
             this.groupBox13.Controls.Add(this.label3);
             this.groupBox13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox13.Location = new System.Drawing.Point(5, 101);
+            this.groupBox13.Location = new System.Drawing.Point(5, 93);
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(410, 189);
+            this.groupBox13.Size = new System.Drawing.Size(410, 174);
             this.groupBox13.TabIndex = 0;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "Controls and Hotkeys";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label32.Location = new System.Drawing.Point(6, 142);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(400, 26);
+            this.label32.TabIndex = 12;
+            this.label32.Text = "NOTE: When the combined intel pane is focused, intel will buffer until you leave " +
+    "the\r\ncombined intel pane.";
             // 
             // label31
             // 
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(82, 102);
+            this.label31.Location = new System.Drawing.Point(82, 94);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(305, 26);
             this.label31.TabIndex = 11;
@@ -2133,7 +2258,7 @@ namespace Taco
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(6, 102);
+            this.label30.Location = new System.Drawing.Point(6, 94);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(64, 13);
             this.label30.TabIndex = 10;
@@ -2143,7 +2268,7 @@ namespace Taco
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(82, 132);
+            this.label18.Location = new System.Drawing.Point(82, 122);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(70, 13);
             this.label18.TabIndex = 9;
@@ -2153,7 +2278,7 @@ namespace Taco
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(6, 132);
+            this.label17.Location = new System.Drawing.Point(6, 122);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(16, 13);
             this.label17.TabIndex = 8;
@@ -2163,7 +2288,7 @@ namespace Taco
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(82, 85);
+            this.label16.Location = new System.Drawing.Point(82, 78);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(179, 13);
             this.label16.TabIndex = 7;
@@ -2173,7 +2298,7 @@ namespace Taco
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(6, 85);
+            this.label15.Location = new System.Drawing.Point(6, 78);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(31, 13);
             this.label15.TabIndex = 6;
@@ -2183,7 +2308,7 @@ namespace Taco
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(82, 68);
+            this.label14.Location = new System.Drawing.Point(82, 63);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(308, 13);
             this.label14.TabIndex = 5;
@@ -2193,7 +2318,7 @@ namespace Taco
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(82, 51);
+            this.label13.Location = new System.Drawing.Point(82, 47);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(188, 13);
             this.label13.TabIndex = 4;
@@ -2203,7 +2328,7 @@ namespace Taco
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(82, 21);
+            this.label12.Location = new System.Drawing.Point(82, 19);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(195, 26);
             this.label12.TabIndex = 3;
@@ -2213,7 +2338,7 @@ namespace Taco
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(6, 68);
+            this.label11.Location = new System.Drawing.Point(6, 63);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(16, 13);
             this.label11.TabIndex = 2;
@@ -2223,7 +2348,7 @@ namespace Taco
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(6, 51);
+            this.label4.Location = new System.Drawing.Point(6, 47);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 13);
             this.label4.TabIndex = 1;
@@ -2233,7 +2358,7 @@ namespace Taco
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(6, 21);
+            this.label3.Location = new System.Drawing.Point(6, 19);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(68, 13);
             this.label3.TabIndex = 0;
@@ -2274,14 +2399,14 @@ namespace Taco
             this.clearSelectedSystemsMenuItem,
             this.quitMenuItem});
             this.MenuStrip.Name = "MenuStrip";
-            this.MenuStrip.Size = new System.Drawing.Size(195, 154);
+            this.MenuStrip.Size = new System.Drawing.Size(211, 154);
             // 
             // followMenuItem
             // 
             this.followMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.noneToolStripMenuItem});
             this.followMenuItem.Name = "followMenuItem";
-            this.followMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.followMenuItem.Size = new System.Drawing.Size(210, 22);
             this.followMenuItem.Text = "Follow Character";
             this.followMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.followMenuItem_DropDownItemClicked);
             // 
@@ -2290,7 +2415,7 @@ namespace Taco
             this.noneToolStripMenuItem.Checked = true;
             this.noneToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.noneToolStripMenuItem.Name = "noneToolStripMenuItem";
-            this.noneToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.noneToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
             this.noneToolStripMenuItem.Text = "None";
             // 
             // mapRangeFromMenuItem
@@ -2298,7 +2423,7 @@ namespace Taco
             this.mapRangeFromMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.homeToolStripMenuItem});
             this.mapRangeFromMenuItem.Name = "mapRangeFromMenuItem";
-            this.mapRangeFromMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.mapRangeFromMenuItem.Size = new System.Drawing.Size(210, 22);
             this.mapRangeFromMenuItem.Text = "Map Range From";
             this.mapRangeFromMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.mapRangeFromMenuItem_DropDownItemClicked);
             // 
@@ -2307,124 +2432,71 @@ namespace Taco
             this.homeToolStripMenuItem.Checked = true;
             this.homeToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.homeToolStripMenuItem.Name = "homeToolStripMenuItem";
-            this.homeToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.homeToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.homeToolStripMenuItem.Text = "Home System";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(191, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(207, 6);
             // 
             // anomalyMonitorMenuItem
             // 
             this.anomalyMonitorMenuItem.Name = "anomalyMonitorMenuItem";
-            this.anomalyMonitorMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.anomalyMonitorMenuItem.Size = new System.Drawing.Size(210, 22);
             this.anomalyMonitorMenuItem.Text = "Anomaly Monitor";
             this.anomalyMonitorMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.anomalyMonitorMenuItem_DropDownItemClicked);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(191, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(207, 6);
             // 
             // muteSoundMenuItem
             // 
             this.muteSoundMenuItem.CheckOnClick = true;
             this.muteSoundMenuItem.Name = "muteSoundMenuItem";
-            this.muteSoundMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.muteSoundMenuItem.Size = new System.Drawing.Size(210, 22);
             this.muteSoundMenuItem.Text = "Mute Sound";
             this.muteSoundMenuItem.Click += new System.EventHandler(this.muteSoundMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(191, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(207, 6);
             // 
             // clearSelectedSystemsMenuItem
             // 
             this.clearSelectedSystemsMenuItem.Name = "clearSelectedSystemsMenuItem";
-            this.clearSelectedSystemsMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.clearSelectedSystemsMenuItem.Size = new System.Drawing.Size(210, 22);
             this.clearSelectedSystemsMenuItem.Text = "Clear Selected Systems";
             this.clearSelectedSystemsMenuItem.Click += new System.EventHandler(this.clearSelectedSystemsMenuItem_Click);
             // 
             // quitMenuItem
             // 
             this.quitMenuItem.Name = "quitMenuItem";
-            this.quitMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.quitMenuItem.Size = new System.Drawing.Size(210, 22);
             this.quitMenuItem.Text = "Quit";
             this.quitMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
-            // EditSelectedItem
+            // glOut
             // 
-            this.EditSelectedItem.AutoSize = true;
-            this.EditSelectedItem.Location = new System.Drawing.Point(144, 283);
-            this.EditSelectedItem.Name = "EditSelectedItem";
-            this.EditSelectedItem.Size = new System.Drawing.Size(70, 13);
-            this.EditSelectedItem.TabIndex = 23;
-            this.EditSelectedItem.TabStop = true;
-            this.EditSelectedItem.Text = "Edit Selected";
-            this.EditSelectedItem.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.EditSelectedItem_LinkClicked);
-            // 
-            // CancelEditSelectedItem
-            // 
-            this.CancelEditSelectedItem.AutoSize = true;
-            this.CancelEditSelectedItem.Location = new System.Drawing.Point(148, 283);
-            this.CancelEditSelectedItem.Name = "CancelEditSelectedItem";
-            this.CancelEditSelectedItem.Size = new System.Drawing.Size(61, 13);
-            this.CancelEditSelectedItem.TabIndex = 24;
-            this.CancelEditSelectedItem.TabStop = true;
-            this.CancelEditSelectedItem.Text = "Cancel Edit";
-            this.CancelEditSelectedItem.Visible = false;
-            this.CancelEditSelectedItem.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.CancelEditSelectedItem_LinkClicked);
-            // 
-            // SaveRangeAlert
-            // 
-            this.SaveRangeAlert.Location = new System.Drawing.Point(355, 71);
-            this.SaveRangeAlert.Name = "SaveRangeAlert";
-            this.SaveRangeAlert.Size = new System.Drawing.Size(48, 23);
-            this.SaveRangeAlert.TabIndex = 18;
-            this.SaveRangeAlert.Text = "Save";
-            this.SaveRangeAlert.UseVisualStyleBackColor = true;
-            this.SaveRangeAlert.Visible = false;
-            this.SaveRangeAlert.Click += new System.EventHandler(this.SaveRangeAlert_Click);
-            // 
-            // SaveCustomAlert
-            // 
-            this.SaveCustomAlert.Location = new System.Drawing.Point(356, 46);
-            this.SaveCustomAlert.Name = "SaveCustomAlert";
-            this.SaveCustomAlert.Size = new System.Drawing.Size(48, 23);
-            this.SaveCustomAlert.TabIndex = 18;
-            this.SaveCustomAlert.Text = "Save";
-            this.SaveCustomAlert.UseVisualStyleBackColor = true;
-            this.SaveCustomAlert.Visible = false;
-            this.SaveCustomAlert.Click += new System.EventHandler(this.SaveCustomAlert_Click);
-            // 
-            // AddLinkedCharacter
-            // 
-            this.AddLinkedCharacter.Location = new System.Drawing.Point(147, 212);
-            this.AddLinkedCharacter.Name = "AddLinkedCharacter";
-            this.AddLinkedCharacter.Size = new System.Drawing.Size(23, 23);
-            this.AddLinkedCharacter.TabIndex = 1;
-            this.AddLinkedCharacter.Text = "+";
-            this.AddLinkedCharacter.UseVisualStyleBackColor = true;
-            this.AddLinkedCharacter.Click += new System.EventHandler(this.AddLinkedCharacter_Click);
-            // 
-            // RemoveLinkedCharacter
-            // 
-            this.RemoveLinkedCharacter.Location = new System.Drawing.Point(176, 212);
-            this.RemoveLinkedCharacter.Name = "RemoveLinkedCharacter";
-            this.RemoveLinkedCharacter.Size = new System.Drawing.Size(23, 23);
-            this.RemoveLinkedCharacter.TabIndex = 2;
-            this.RemoveLinkedCharacter.Text = "-";
-            this.RemoveLinkedCharacter.UseVisualStyleBackColor = true;
-            this.RemoveLinkedCharacter.Click += new System.EventHandler(this.RemoveLinkedCharacter_Click);
-            // 
-            // NewLinkedCharacter
-            // 
-            this.NewLinkedCharacter.Location = new System.Drawing.Point(7, 214);
-            this.NewLinkedCharacter.Name = "NewLinkedCharacter";
-            this.NewLinkedCharacter.Size = new System.Drawing.Size(134, 20);
-            this.NewLinkedCharacter.TabIndex = 3;
+            this.glOut.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.glOut.BackColor = System.Drawing.Color.Black;
+            this.glOut.Location = new System.Drawing.Point(12, 11);
+            this.glOut.Name = "glOut";
+            this.glOut.Size = new System.Drawing.Size(750, 692);
+            this.glOut.TabIndex = 13;
+            this.glOut.TabStop = false;
+            this.glOut.VSync = false;
+            this.glOut.Load += new System.EventHandler(this.glOut_Load);
+            this.glOut.Paint += new System.Windows.Forms.PaintEventHandler(this.glOut_Paint);
+            this.glOut.MouseDown += new System.Windows.Forms.MouseEventHandler(this.glOut_MouseDown);
+            this.glOut.MouseMove += new System.Windows.Forms.MouseEventHandler(this.glOut_MouseMove);
+            this.glOut.MouseUp += new System.Windows.Forms.MouseEventHandler(this.glOut_MouseUp);
+            this.glOut.Resize += new System.EventHandler(this.glOut_Resize);
             // 
             // CombinedIntel
             // 
@@ -2437,7 +2509,7 @@ namespace Taco
             this.CombinedIntel.Name = "CombinedIntel";
             this.CombinedIntel.ReadOnly = true;
             this.CombinedIntel.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
-            this.CombinedIntel.Size = new System.Drawing.Size(444, 655);
+            this.CombinedIntel.Size = new System.Drawing.Size(444, 599);
             this.CombinedIntel.TabIndex = 12;
             this.CombinedIntel.TabStop = false;
             this.CombinedIntel.Text = "";
@@ -2447,22 +2519,11 @@ namespace Taco
             this.CombinedIntel.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CombinedIntel_KeyDown);
             this.CombinedIntel.Leave += new System.EventHandler(this.CombinedIntel_Leave);
             // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(6, 154);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(400, 26);
-            this.label32.TabIndex = 12;
-            this.label32.Text = "NOTE: When the combined intel pane is focused, intel will buffer until you leave " +
-    "the\r\ncombined intel pane.";
-            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1237, 777);
+            this.ClientSize = new System.Drawing.Size(1237, 717);
             this.Controls.Add(this.glOut);
             this.Controls.Add(this.UIContainer);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -2478,6 +2539,8 @@ namespace Taco
             this.UIContainer.ResumeLayout(false);
             this.UITabControl.ResumeLayout(false);
             this.CombinedPage.ResumeLayout(false);
+            this.GOTGPage.ResumeLayout(false);
+            this.GOTGPage.PerformLayout();
             this.BranchPage.ResumeLayout(false);
             this.BranchPage.PerformLayout();
             this.DekleinPage.ResumeLayout(false);
@@ -2743,6 +2806,10 @@ namespace Taco
         private System.Windows.Forms.Button RemoveLinkedCharacter;
         private System.Windows.Forms.Button AddLinkedCharacter;
         private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.TabPage GOTGPage;
+        private System.Windows.Forms.TextBox GOTGIntel;
+        private System.Windows.Forms.CheckBox MonitorGOTG;
+        private System.Windows.Forms.CheckBox AlertGOTG;
     }
 }
 

@@ -403,6 +403,16 @@ namespace Taco.Classes
             }
         }
 
+        public bool MonitorGOTG
+        {
+            get { return _config.MonitorGOTG; }
+            set
+            {
+                _config.MonitorGOTG = value;
+                WriteConfig();
+            }
+        }
+
         public bool MonitorGameLog
         {
             get { return _config.MonitorGameLog; }
@@ -509,6 +519,16 @@ namespace Taco.Classes
             set
             {
                 _config.AlertDelve = value;
+                WriteConfig();
+            }
+        }
+
+        public bool AlertGOTG
+        {
+            get { return _config.AlertGOTG; }
+            set
+            {
+                _config.AlertGOTG = value;
                 WriteConfig();
             }
         }
