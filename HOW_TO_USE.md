@@ -1,4 +1,5 @@
 # THE GUIDE TO USE TACO #
+## ADVICE:NEVER REAL AFK FOR PVE(ANYTHING)
 
 * double click the TACO.exe
 * you will see the main frame:
