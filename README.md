@@ -1,6 +1,10 @@
 # T.A.C.O. #
 ###An intel channel monitor with an OpenGL based map display.###
 
+## [CYNO FOR HOW TACO WORK](https://github.com/zhang98722/TACO/blob/master/HOW_IT_WORK.md)
+
+## [CYNO FOR HOW TO USE TACO](https://github.com/zhang98722/TACO/blob/master/HOW_TO_USE.md)
+
 [![TACO Main Window](http://i.imgur.com/ykbKBWY.png)](http://i.imgur.com/wQV5nOI.png "TACO Main Window - Click to Enlarge") [![TACO Channels](http://i.imgur.com/3uFU1oH.png)](http://i.imgur.com/ZR3XmK0.png "Channels - Click to Enlarge") [![TACO Alerts](http://i.imgur.com/NkIaVZp.png)](http://i.imgur.com/7TUHwru.png "Alerts - Click to Enlarge") [![TACO Lists](http://i.imgur.com/OKJW1Kp.png)](http://i.imgur.com/QKAn4eL.png "Lists - Click to Enlarge") [![TACO Misc](http://i.imgur.com/PFvtCqP.png)](http://i.imgur.com/dvfK9Zc.png "Misc - Click to Enlarge")
 
 * **Still in development**
