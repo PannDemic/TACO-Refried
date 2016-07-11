@@ -6,6 +6,8 @@
 
 ![Main FRAME](https://raw.githubusercontent.com/zhang98722/TACO/master/1.png)]
 
+## click the magic button: start Watching Logs
+
 * then you can click the [Config] panel to get TACO fit yourself
 ** config intel channel
 
